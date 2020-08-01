@@ -1,0 +1,28 @@
+.player-card {
+    width: 20vw;
+    height: 20vw;
+
+    border: 1px solid black;
+}
+
+h3 {
+    height: 30%;
+}
+
+.player-sign {
+    height: 70%;
+}
+
+.sign {
+    height: 100px;
+    width: 100px;
+    font-size: 5rem;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+h3, .player-sign, .sign {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

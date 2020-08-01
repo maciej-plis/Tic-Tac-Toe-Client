@@ -1,0 +1,52 @@
+#game {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 3fr 5fr 3fr;
+}
+
+header{
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+}
+
+.leave {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 15px;
+    font-size: 1.4rem;
+    background-color: red;
+    color: white;
+}
+
+.status-bar {
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
+}
+
+.player1 {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+}
+
+.game-board {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+}
+
+.player2 {
+    grid-column: 3 / 4;
+    grid-row: 3 / 4;
+}
+
+header, .status-bar, .player-card, .game-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-sign {
+    background-color: pink;
+}

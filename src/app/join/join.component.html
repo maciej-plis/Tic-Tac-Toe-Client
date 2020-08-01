@@ -1,0 +1,6 @@
+<div id="join">
+    <div class="error" *ngIf="errorMsg" style="color: red; border: 1px solid black; margin: 15px; padding: 3px;">{{errorMsg}}</div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" #name>
+    <button (click)="join(name.value)">Join</button>
+</div>
