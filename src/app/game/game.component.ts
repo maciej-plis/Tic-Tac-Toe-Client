@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { GameData } from './model/GameData';
-import { GameService } from './service/game.service';
+import { Router } from '@angular/router';
+import { GameData, GameService } from './service/game.service';
+
+enum GameStatus {
+  NOT_ENOUGH_PLAYERS = "Waiting for more players",
+  IN_PROGRESS = "Player %s is moving",
+  DRAW = "Game tied",
+  WIN = "%s Wins"
+}
 
 @Component({
   selector: 'app-game',
@@ -13,23 +20,25 @@ export class GameComponent implements OnInit {
 
   constructor(
     private gameService: GameService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.gameData = {
-      status: 'GAME IN PROGRESS',
-      board: ['X','','O','','X','','X','O','O'],
-      player1: {name: 'RICO5k', sign: 'X'},
-      player2: {name: 'Franciszek', sign: 'O'}
-    }
-  }
-
-  formatStatus(status: string): string {
-    return status;
+    this.gameService.getGameData().subscribe(resp => {
+      this.gameData = resp;
+    });
   }
 
   leave() {
-    this.gameService.leave();
+    this.gameService.leave().subscribe(resp => {
+      if(resp.success) {
+        this.router.navigate(['join']);
+      }
+    });
+  }
+
+  formatStatusMessage(status: string) {
+    return GameStatus[status].replace("%s", this.gameData.tour);
   }
 
 }

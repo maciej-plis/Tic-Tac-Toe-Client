@@ -1,0 +1,11 @@
+#register-page {
+    width: 100vw;
+    height: 100vh;
+}
+
+#register-page, .register-form, .register-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

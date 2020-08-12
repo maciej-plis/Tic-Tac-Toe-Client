@@ -8,7 +8,7 @@ import { GameService } from '../service/game.service';
 })
 export class GameBoardComponent implements OnInit {
 
-  @Input() board: Array<string>;
+  @Input() board: string[][];
 
   constructor(
     private gameService: GameService,
@@ -17,20 +17,9 @@ export class GameBoardComponent implements OnInit {
   ngOnInit(): void { 
   }
 
-  formatTo2Dim(board: Array<string>):Array<Array<string>> {
-    const formatedBoard = [];
-
-    let index=0;
-
-    for(let i=0; i<Math.sqrt(board.length); i++) {
-      const row = []; 
-      for(let i=0; i<Math.sqrt(board.length); i++) {
-        row.push(board[index]);
-        index++;
-      }
-      formatedBoard.push(row);
-    }
-
-    return formatedBoard;
+  mark(x: number, y: number) {
+    this.gameService.mark(x ,y).subscribe(resp => {
+      console.log(resp);
+    })
   }
 }

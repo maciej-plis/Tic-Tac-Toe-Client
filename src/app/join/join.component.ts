@@ -9,7 +9,7 @@ import { GameService } from '../game/service/game.service';
 })
 export class JoinComponent implements OnInit {
 
-  errorMsg: string;
+  error: string;
 
   constructor(
     private gameService: GameService,
@@ -17,16 +17,19 @@ export class JoinComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
   }
 
-  join(name: string) {
-    this.gameService.join(name).subscribe(resp => {
-      if(resp.success == "true") {
-        this.router.navigate(['/game']);
+  join() {
+    this.gameService.join().subscribe(resp => {
+      if(resp.success) {
+        this.error = null;
+        this.router.navigate(['game']);
+      } else {
+        this.error = resp.message;
       }
-  
-      this.errorMsg = resp.message;
     });
+
   }
 
 }

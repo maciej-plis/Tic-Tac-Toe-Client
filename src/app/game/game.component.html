@@ -3,8 +3,8 @@
         <h1>TIC TAC TOE</h1>
         <button class="leave" (click)="leave()">leave</button>
     </header>
-    <app-status-bar class="status-bar" [statusMessage]="formatStatus(gameData.status)"></app-status-bar>
-    <app-player-card class="player-card player1" [player]="gameData.player1"></app-player-card>
+    <app-status-bar class="status-bar" [statusMessage]="formatStatusMessage(gameData.status)"></app-status-bar>
+    <app-player-card class="player-card player1" [symbol]="'X'" [playerName]="gameData.players.X"></app-player-card>
     <app-game-board class="game-board" [board]="gameData.board"></app-game-board>
-    <app-player-card class="player-card player2" [player]="gameData.player2"></app-player-card>
+    <app-player-card class="player-card player2" [symbol]="'O'" [playerName]="gameData.players.O"></app-player-card>
 </div>

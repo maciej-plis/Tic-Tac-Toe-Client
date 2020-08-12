@@ -7,7 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PlayerCardComponent implements OnInit {
 
-  @Input() player: {name: string, sign: string};
+  @Input() symbol: string;
+  @Input() playerName: string;
 
   constructor() { }
 

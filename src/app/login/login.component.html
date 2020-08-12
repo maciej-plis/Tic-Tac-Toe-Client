@@ -1,0 +1,16 @@
+<div id="login-page">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" autofocus formControlName="username">
+        <label for="password">Password:</label>
+        <input type="text" name="password" id="password" formControlName="password">
+        <div class="rememberMe">
+            <input type="checkbox" name="rememberMe" id="rememberMe">
+            <label for="rememberMe">Remember me</label>
+        </div>
+        <input type="submit" value="Sign In">
+    </form>
+    <div class="login-footer">
+        <a routerLink="/register">Sign up</a>
+    </div>
+</div>

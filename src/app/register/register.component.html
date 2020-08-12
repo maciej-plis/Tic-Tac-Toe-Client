@@ -1,0 +1,16 @@
+<div id="register-page">
+    <form [formGroup]="registerForm" (ngSubmit)="register()" class="register-form">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" autofocus formControlName="email">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" formControlName="username">
+        <label for="password">Password:</label>
+        <input type="text" name="password" id="password" formControlName="password">
+        <label for="verifyPassword">Confirm password:</label>
+        <input type="text" name="verifyPassword" id="verifyPassword" formControlName="verifyPassword">
+        <input type="submit" value="Sign Up">
+    </form>
+    <div class="register-footer">
+        <a routerLink="/login">Sign in</a>
+    </div>
+</div>
