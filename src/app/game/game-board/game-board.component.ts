@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GameService } from '../service/game.service';
+import { Symbol } from '../store/reducers/game-data.reducer';
 
 @Component({
   selector: 'app-game-board',
@@ -8,7 +9,9 @@ import { GameService } from '../service/game.service';
 })
 export class GameBoardComponent implements OnInit {
 
-  @Input() board: string[][];
+  Symbol = Symbol;
+
+  @Input() board: Symbol[][];
 
   constructor(
     private gameService: GameService,

@@ -2,11 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject, merge, Observable } from 'rxjs';
+import { BehaviorSubject, merge, Observable, ReplaySubject } from 'rxjs';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { over } from 'stompjs';
 import * as SockJS from 'sockjs-client';
-import { mergeMap } from 'rxjs/operators';
 
 export interface GameData {
     board: string[][];
@@ -46,22 +45,22 @@ export class GameService {
   client: any;
   wsEndpoint = "/tic-tac-toe";
 
-  getGameData(): Observable<GameData> {
+  getGameData(): Observable<any> {
     this.socket = new SockJS(this.url + this.wsEndpoint);
     this.client = over( this.socket );
 
-    let gameDataSubject = new BehaviorSubject<GameData>(null);
-    
-    this.http.get<GameData>(this.url + '/game-data', {headers: this.authHeader()}).subscribe(resp => {
-      gameDataSubject.next(resp);
-    });
+    return this.http.get<GameData>(this.url + '/game-data', {headers: this.authHeader()});
+  }
+
+  updateGameData(): Observable<any> {
+    let gameDataUpdates: ReplaySubject<any> = new ReplaySubject(); 
 
     this.client.connect(
       {},
       (frame) => {
         this.client.subscribe("/topic/game", (message: {body: any}) => {
-          const payload: GameData = JSON.parse(message.body);
-          gameDataSubject.next(payload);          
+          const payload: any = JSON.parse(message.body);
+          gameDataUpdates.next(payload);
         });
       },
       (error) => {
@@ -69,7 +68,7 @@ export class GameService {
       }
     )
 
-    return gameDataSubject.asObservable();
+    return gameDataUpdates.asObservable();
   }
 
   mark(x: number, y: number) {

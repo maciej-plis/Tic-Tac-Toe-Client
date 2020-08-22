@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GameData, GameService } from './service/game.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { GameService } from './service/game.service';
+import { State } from './store/reducers/game-data.reducer';
+import * as GameDataActions from './store/actions/game-data.actions';
 
 enum GameStatus {
   NOT_ENOUGH_PLAYERS = "Waiting for more players",
@@ -16,17 +20,20 @@ enum GameStatus {
 })
 export class GameComponent implements OnInit {
 
-  gameData: GameData;
+  gameData: Observable<State>;
 
   constructor(
     private gameService: GameService,
-    private router: Router
+    private router: Router,
+    private store: Store<{gameData: State}>,
   ) { }
 
   ngOnInit(): void {
-    this.gameService.getGameData().subscribe(resp => {
-      this.gameData = resp;
+    this.gameData = this.store.select(state => {
+      return state.gameData;
     });
+
+    this.store.dispatch(GameDataActions.loadGameData());
   }
 
   leave() {
@@ -37,8 +44,8 @@ export class GameComponent implements OnInit {
     });
   }
 
-  formatStatusMessage(status: string) {
-    return GameStatus[status].replace("%s", this.gameData.tour);
+  formatStatusMessage(gameData: State): string {
+    return GameStatus[gameData.status] ? GameStatus[gameData.status].replace("%s", gameData.players[gameData.activeSymbol].name) : "";
   }
 
 }

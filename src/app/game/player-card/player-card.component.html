@@ -1,9 +1,9 @@
 <div class="playerCard">
-    <h3>{{playerName}}</h3>
+    <h3>{{ player != null ? player.name : "" }}</h3>
     <hr>
     <div class="playerSymbol">
         <div class="symbol">
-            {{symbol}}
+            {{ player != null ? player.symbol : "" }}
         </div>
     </div>
 </div>

@@ -7,6 +7,16 @@
     flex-direction: column;
 }
 
+.logout {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 15px;
+    font-size: 1.4rem;
+    background-color: red;
+    color: white;
+}
+
 .joinBtn {
     font-size: 1.5rem;
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Player, Symbol } from '../store/reducers/game-data.reducer';
 
 @Component({
   selector: 'app-player-card',
@@ -7,8 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PlayerCardComponent implements OnInit {
 
-  @Input() symbol: string;
-  @Input() playerName: string;
+  @Input() player: Player;
 
   constructor() { }
 
