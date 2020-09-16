@@ -1,11 +1,35 @@
 #register-page {
     width: 100vw;
     height: 100vh;
-}
-
-#register-page, .register-form, .register-footer {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.card {
+    background-color: rgb(248, 249, 250);
+}
+
+.card-body {
+    padding: 1.5rem 3rem;
+}
+
+.separator {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid black;
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+    color: rgba(0,0,0,.400);
+    border-color: rgba(0,0,0,.400);
+    margin: 1rem 0;
+}
+
+.separator span {
+    background: rgb(248, 249, 250);
+    padding: 0 10px;
+}
+
+.btn {
+    width: 100%;
 }

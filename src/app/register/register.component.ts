@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Directive, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../shared/services/authentication.service';
@@ -23,13 +23,15 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
   }
 
   register() {
     if(this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe(resp => {
-        this.router.navigate(['login']);
+        if(resp.success) {
+          this.router.navigate(['login']);
+        }
       });
     }
   }
