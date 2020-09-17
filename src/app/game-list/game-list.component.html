@@ -1,0 +1,27 @@
+<div id="games card">
+    <header class="card-header">
+        <h1 class="logo">TicTacToe</h1>
+        <div class="game-search">
+            <input type="text" class="form-control" placeholder="Searched game..." #keyword (keyup)="filterGames(keyword.value)">
+        </div>
+        <button class="btn btn-danger btn-logout" (click)="logout()">logout</button>
+    </header>
+    <div class="games card-body">
+        <div class="game" *ngFor="let game of filteredGames">
+            <div class="game-name">{{game.name}}</div>
+            <div class="game-desc">
+                <div class="player">
+                    <span class="player-symbol">x</span>
+                    {{game.X ? game.X : "empty&nbsp;slot"}}
+                </div>
+                <div class="player">
+                    <span class="player-symbol">o</span>
+                    {{game.Y ? game.Y : "empty&nbsp;slot"}}
+                </div>
+            </div>
+            <div class="game-controls">
+                <button class="btn btn-success" (click)="joinGame(game.name)">Join</button>
+            </div>
+        </div>
+    </div>
+</div>

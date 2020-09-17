@@ -1,0 +1,82 @@
+#games {
+    width: 100vw;
+    height: 100vh;
+}
+
+header {
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    color: #343a40;
+    font-size: 3.5rem;
+    margin: 1rem;
+    font-family: Lobster, sans-serif;
+}
+
+.game-search {
+    display: flex;
+}
+
+.game-search input {
+    margin-right: 1rem;
+    width: 20rem;
+
+}
+
+header .btn-logout {
+    margin: 1rem;
+}
+
+.games {
+    display: grid;
+    flex-direction: column;
+}
+
+.game {
+    display: inline-grid;
+    grid-template-columns: 26rem minmax(min-content, auto) min-content;
+    border: 1px solid rgba(0,0,0,.125);
+    margin-bottom: 1.25rem;
+}
+
+.game > * {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem;
+    overflow: hidden;
+}
+
+.game .game-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.game .game-desc {
+    border-right: 1px solid rgba(0,0,0,.125);
+    border-left: 1px solid rgba(0,0,0,.125);
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.game .game-desc .player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    font-size: 1.3rem;
+}
+
+.game .game-desc .player .player-symbol {
+    text-transform: uppercase;
+    font-family: 'Luckiest Guy', sans-serif;
+    margin: 0.3rem;
+    color: #343a40;
+}
+
