@@ -10,9 +10,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "ES6",
     "lib": [
       "es2018",
+      "DOM.Iterable",
       "dom"
     ]
   },

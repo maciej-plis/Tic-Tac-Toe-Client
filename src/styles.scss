@@ -1,0 +1,17 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+* {
+    margin: 0;
+}
+
+body {
+    font-family: Roboto, sans-serif;
+}
+
+.submitted .ng-invalid {
+    @extend .is-invalid;
+}
+
+.submitted .ng-valid {
+    @extend .is-valid;
+}

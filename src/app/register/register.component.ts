@@ -1,5 +1,5 @@
-import { Component, Directive, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../shared/services/authentication.service';
 
@@ -9,13 +9,14 @@ import { AuthenticationService } from '../shared/services/authentication.service
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  @ViewChild("registrationForm") formElement: ElementRef;
 
   registerForm = this.fb.group({
-    email: ['', Validators.required],
-    username: ['', Validators.required],
-    password: ['', Validators.required],
-    verifyPassword: ['', Validators.required],
-  });
+    email: [''],
+    username: [''],
+    password: [''],
+    verifyPassword: [''],
+  }, {updateOn: 'submit'});
 
   constructor(
     private authService: AuthenticationService,
@@ -23,17 +24,33 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void { 
-  }
-
-  register() {
-    if(this.registerForm.valid) {
-      this.authService.register(this.registerForm.value).subscribe(resp => {
-        if(resp.success) {
-          this.router.navigate(['login']);
-        }
-      });
+  ngOnInit(): void {
+    if(this.authService.isAuthenticated()) {
+      this.router.navigate(['games']);
     }
   }
 
+  register() {
+    this.formElement.nativeElement.classList.add("submitted");
+    this.registerForm.enable();
+    if(this.registerForm.valid) {
+      this.tryToRegister();
+    }
+  }
+
+  private tryToRegister() {
+    this.authService.register(this.registerForm.value).subscribe(resp => {
+      if(resp.success) {
+        this.router.navigate(['login']);
+      } else {
+        this.setFieldErrors(resp.fieldErrors);
+      }
+    });
+  }
+
+  private setFieldErrors(fieldErrors: any) {
+    for(let field in fieldErrors) {
+      this.registerForm.controls[field].setErrors({"serverError": fieldErrors[field]});
+    }
+  }
 }

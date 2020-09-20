@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { GameService } from '../game/service/game.service';
 import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
@@ -10,10 +9,11 @@ import { AuthenticationService } from '../shared/services/authentication.service
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  message: string;
 
   loginForm = this.fb.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required],
+    username: [''],
+    password: [''],
   });
 
   constructor(
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.authService.isAuthenticated()) {
-      this.router.navigate(['join']);
+      this.router.navigate(['games']);
     }
   }
 
@@ -32,9 +32,14 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(resp => {
         if(resp.success) {
-          this.router.navigate(['join']);
+          this.message = null;
+          this.router.navigate(['games']);
+        } else {
+          this.message = resp.message;
         }
-      })
+      });
+    } else {
+      this.message = "Please fill in all required fields";
     }
   }
 
