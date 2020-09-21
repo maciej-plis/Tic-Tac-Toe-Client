@@ -30,17 +30,18 @@ export class LoginComponent implements OnInit {
 
   login() {
     if(this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe(resp => {
-        if(resp.success) {
-          this.message = null;
-          this.router.navigate(['games']);
-        } else {
-          this.message = resp.message;
-        }
-      });
+      this.authService.login(this.loginForm.value).subscribe(this.loginSuccess, this.loginFailure);
     } else {
       this.message = "Please fill in all required fields";
     }
   }
 
+  private loginSuccess = () => {
+    this.message = null;
+    this.router.navigate(['games']);
+  }
+
+  private loginFailure = ({error}) => {
+    this.message = error;
+  }
 }

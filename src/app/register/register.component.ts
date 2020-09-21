@@ -39,13 +39,15 @@ export class RegisterComponent implements OnInit {
   }
 
   private tryToRegister() {
-    this.authService.register(this.registerForm.value).subscribe(resp => {
-      if(resp.success) {
-        this.router.navigate(['login']);
-      } else {
-        this.setFieldErrors(resp.fieldErrors);
-      }
-    });
+    this.authService.register(this.registerForm.value).subscribe(this.registrationSuccess, this.registartionFailure);
+  }
+
+  private registrationSuccess = (response) => {
+    this.router.navigate(["login"]);
+  }
+
+  private registartionFailure = ({error}) => {
+    this.setFieldErrors(error);
   }
 
   private setFieldErrors(fieldErrors: any) {

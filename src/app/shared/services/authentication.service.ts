@@ -1,19 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { retry } from 'rxjs/operators';
+import { API_URL } from '../../game-api.config';
 import { SharedModule } from '../shared.module';
-
-interface User {
-  username: string,
-  token: string,
-}
 
 interface LoginDetails {
   username: string,
-  password, string,
-  rememberMe: boolean
+  password: string
 }
 
 interface RegistrationDetails {
@@ -28,34 +23,28 @@ interface RegistrationDetails {
 })
 export class AuthenticationService {
 
-  private url: string = "http://localhost:8080";
-
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
   ) { }
 
-  register(registrationDetails: RegistrationDetails) {
-    return this.http.post<{success: boolean, message: string}>(this.url + "/register", registrationDetails);
+  register(registrationDetails: RegistrationDetails): Observable<any> {
+    return this.http.post(API_URL + "register", registrationDetails);
   }
 
-  login(loginDetails: LoginDetails) {
-    return this.http.post<{success: boolean, message: string, user: User}>(this.url + "/authenticate", loginDetails).pipe(
-      map(resp => {
-        if(resp.success) {
-          this.cookieService.set("Authorization", resp.user.token, 1);
-          delete resp.user;
-        }
-        return resp;
-      })
-    );
+  login(loginDetails: LoginDetails): Observable<any> {
+    return this.http.post(API_URL + "login", loginDetails, {withCredentials: true}).pipe(retry(1));
   }
 
-  logout() {
-    this.cookieService.delete("Authorization");
+  logout(): boolean {
+    if(this.isAuthenticated()) {
+      this.cookieService.delete("Authorization");
+      return true;
+    }
+    return false;
   }
 
-  public isAuthenticated(): boolean {
+  isAuthenticated(): boolean {
     return this.cookieService.check("Authorization");
   }
 }
