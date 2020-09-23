@@ -4,23 +4,28 @@
         <div class="game-search">
             <input type="text" class="form-control" placeholder="Searched game..." #keyword (keyup)="filterGames(keyword.value)">
         </div>
+        <select class="form-control sorting" #sorting (change)="applySorting(sorting.value)">
+            <option value="{{method}}" *ngFor="let method of sortingMethods" >
+                {{formatSortingMethodName(method)}}
+            </option>
+        </select>
         <button class="btn btn-danger btn-logout" (click)="logout()">logout</button>
     </header>
     <div class="games card-body">
-        <div class="game" *ngFor="let game of filteredGames">
+        <div class="game" *ngFor="let game of filteredGames | gamesSorting:activeMethod">
             <div class="game-name">{{game.name}}</div>
             <div class="game-desc">
                 <div class="player">
                     <span class="player-symbol">x</span>
-                    {{game.X ? game.X : "empty&nbsp;slot"}}
+                    {{game.players.X ? game.players.X : "empty&nbsp;slot"}}
                 </div>
                 <div class="player">
                     <span class="player-symbol">o</span>
-                    {{game.Y ? game.Y : "empty&nbsp;slot"}}
+                    {{game.players.O ? game.players.O : "empty&nbsp;slot"}}
                 </div>
             </div>
             <div class="game-controls">
-                <button class="btn btn-success" (click)="joinGame(game.name)">Join</button>
+                <button class="btn btn-success" (click)="joinGame(game.id)">Join</button>
             </div>
         </div>
     </div>

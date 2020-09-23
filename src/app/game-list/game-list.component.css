@@ -17,6 +17,10 @@ header .logo {
     font-family: Lobster, sans-serif;
 }
 
+header .sorting {
+    width: min-content;
+}
+
 .game-search {
     display: flex;
 }
@@ -24,7 +28,6 @@ header .logo {
 .game-search input {
     margin-right: 1rem;
     width: 20rem;
-
 }
 
 header .btn-logout {
@@ -32,11 +35,14 @@ header .btn-logout {
 }
 
 .games {
-    display: grid;
+    height: 90vh;
+    display: flex;
     flex-direction: column;
+    overflow-y: scroll;
 }
 
 .game {
+    height: min-content;
     display: inline-grid;
     grid-template-columns: 26rem minmax(min-content, auto) min-content;
     border: 1px solid rgba(0,0,0,.125);
