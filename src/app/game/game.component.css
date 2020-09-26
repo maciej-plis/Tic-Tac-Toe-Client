@@ -6,19 +6,16 @@
     grid-template-rows: 1fr 3fr 5fr 3fr;
 }
 
-header{
-    grid-column: 1 / 4;
-    grid-row: 1 / 2;
+header, .status-bar, .player-card, .game-board, .rematch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.leave {
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin: 15px;
-    font-size: 1.4rem;
-    background-color: red;
-    color: white;
+header{
+    height: 10vh;
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
 }
 
 .status-bar {
@@ -41,12 +38,24 @@ header{
     grid-row: 3 / 4;
 }
 
-header, .status-bar, .player-card, .game-board {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.rematch {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
 }
 
-.player-sign {
-    background-color: pink;
+header h1 {
+    color: #343a40;
+    font-size: 3.5rem;
+    font-family: Lobster, sans-serif;
+}
+
+header .btn {
+    position: absolute;
+    right: 2rem;
+}
+
+.rematch-button {
+    margin: 2rem;
+    padding: 1rem;
+    font-size: 1.5rem;
 }

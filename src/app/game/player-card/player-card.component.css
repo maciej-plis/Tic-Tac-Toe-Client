@@ -1,27 +1,33 @@
 .playerCard {
-    width: 200px;
-    height: 200px;
-
-    border: 1px solid black;
+    width: 15rem;
+    height: 15rem;
+    border: 1px solid #343a40;
 }
 
-h3 {
+.playerName {
     height: 30%;
+}
+
+.playerName h3 {
+    margin: 0;
 }
 
 .playerSymbol {
     height: 70%;
+    border-top: 1px solid #343a40;
 }
 
 .symbol {
-    height: 75px;
-    width: 75px;
-    font-size: 3rem;
-    background-color: #eee;
+    font-family: 'Luckiest Guy', sans-serif;
+    height: 6rem;
+    width: 6rem;
+    font-size: 4rem;
+    background-color: rgba(0, 0, 0, 0.03);
+    border: 1px solid  rgba(0,0,0,.125);
     border-radius: 50%;
 }
 
-h3, .playerSymbol, .symbol {
+.playerName, .playerSymbol, .symbol {
     display: flex;
     justify-content: center;
     align-items: center;

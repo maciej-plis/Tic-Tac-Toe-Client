@@ -1,10 +1,13 @@
-<div id="game">
-    <header>
-        <h1>TIC TAC TOE</h1>
-        <button class="leave" (click)="leave()">leave</button>
+<div id="game" class="card">
+    <header class="card-header">
+        <h1>TicTacToe</h1>
+        <button class="btn btn-danger" (click)="leave()">Leave</button>
     </header>
-    <app-status-bar class="status-bar" [statusMessage]="formatStatusMessage(gameData | async)"></app-status-bar>
-    <app-player-card class="player-card player1" [player]="(gameData | async).players.X"></app-player-card>
-    <app-game-board class="game-board" [board]="(gameData | async).board"></app-game-board>
-    <app-player-card class="player-card player2" [player]="(gameData | async).players.O"></app-player-card>
+    <app-status-bar class="status-bar" [gameState]="gameData.state" [activePlayer]="gameData.players[gameData.activeSymbol]"></app-status-bar>
+    <app-player-card class="player-card player1" *ngIf="gameData.players.X" [player]="gameData.players.X"></app-player-card>
+    <app-game-board class="game-board" [board]="gameData.board"></app-game-board>
+    <app-player-card class="player-card player2" *ngIf="gameData.players.O" [player]="gameData.players.O"></app-player-card>
+    <div class="rematch" *ngIf="isFinished()">
+        <button class="btn btn-lg btn-block btn-dark" (click)="rematch()">REMATCH</button>
+    </div>
 </div>
