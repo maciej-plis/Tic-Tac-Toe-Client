@@ -1,17 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { GameService } from './service/game.service';
-import { State } from './store/reducers/game-data.reducer';
-import * as GameDataActions from './store/actions/game-data.actions';
-
-enum GameStatus {
-  NOT_ENOUGH_PLAYERS = "Waiting for more players",
-  IN_PROGRESS = "Player %s is moving",
-  DRAW = "Game tied",
-  WIN = "%s Wins"
-}
+import { GameService } from './game.service';
+import * as GameDataActions from './store/game-data.actions';
+import { GameState, State } from './store/game-data.reducer';
 
 @Component({
   selector: 'app-game',
@@ -20,7 +12,7 @@ enum GameStatus {
 })
 export class GameComponent implements OnInit {
 
-  gameData: Observable<State>;
+  gameData: State;
 
   constructor(
     private gameService: GameService,
@@ -29,23 +21,29 @@ export class GameComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.gameData = this.store.select(state => {
-      return state.gameData;
+    this.store.select(state => state.gameData).subscribe(state => {
+      this.gameData = state;
     });
-
     this.store.dispatch(GameDataActions.loadGameData());
   }
 
   leave() {
     this.gameService.leave().subscribe(resp => {
       if(resp.success) {
-        this.router.navigate(['join']);
+        this.router.navigate(['games']);
       }
     });
   }
 
-  formatStatusMessage(gameData: State): string {
-    return GameStatus[gameData.status] ? GameStatus[gameData.status].replace("%s", gameData.players[gameData.activeSymbol].name) : "";
+  rematch() {
+    this.gameService.rematch().subscribe(resp => {
+      console.log(resp);
+    });
+  }
+
+
+  isFinished(): boolean {
+    return this.gameData.state == GameState.WIN || this.gameData.state == GameState.DRAW;
   }
 
 }

@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GameComponent } from './game.component';
-import { GameBoardComponent } from './game-board/game-board.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { GameBoardComponent } from './game-board/game-board.component';
+import { GameComponent } from './game.component';
 import { PlayerCardComponent } from './player-card/player-card.component';
 import { StatusBarComponent } from './status-bar/status-bar.component';
-import { StoreModule } from '@ngrx/store';
-import * as GameDataReducer from './store/reducers/game-data.reducer';
-import { EffectsModule } from '@ngrx/effects';
-import { GameDataEffects } from './store/effects/game-data.effects';
+import { GameDataEffects } from './store/game-data.effects';
+import * as GameDataReducer from './store/game-data.reducer';
 
 @NgModule({
   declarations: [GameComponent, GameBoardComponent, PlayerCardComponent, StatusBarComponent],

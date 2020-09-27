@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GameService } from '../service/game.service';
-import { Symbol } from '../store/reducers/game-data.reducer';
+import { GameService } from '../game.service';
+import { Symbol } from '../store/game-data.reducer';
 
 @Component({
   selector: 'app-game-board',

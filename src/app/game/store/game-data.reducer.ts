@@ -3,16 +3,15 @@ import {
   createReducer,
   on
 } from '@ngrx/store';
-
-import * as GameDataActions from '../actions/game-data.actions';
+import * as GameDataActions from './game-data.actions';
 
 export const gameDataFeatureKey = 'gameData';
 
-export enum GameStatus {
-  NOT_ENOUGH_PLAYERS = "Waiting for more players",
-  IN_PROGRESS = "Player %s is moving",
-  DRAW = "Game tied",
-  WIN = "%s Wins"
+export enum GameState {
+  NOT_ENOUGH_PLAYERS = "NOT_ENOUGH_PLAYERS",
+  IN_PROGRESS = "IN_PROGRESS",
+  DRAW = "DRAW",
+  WIN = "WIN"
 }
 
 export enum Symbol {
@@ -28,6 +27,7 @@ export interface Player {
 }
 
 export interface State {
+  name: string;
   board: Symbol[][];
 
   players: {
@@ -35,35 +35,36 @@ export interface State {
     O?: Player
   };
 
-  status: GameStatus;
+  state: GameState;
   activeSymbol: Symbol;
 }
 
 export const initialState: State = {
+  name: "",
   board: [[Symbol.EMPTY,Symbol.EMPTY,Symbol.EMPTY],
           [Symbol.EMPTY,Symbol.EMPTY,Symbol.EMPTY],
           [Symbol.EMPTY,Symbol.EMPTY,Symbol.EMPTY]],
   players: {},
-  status: GameStatus.NOT_ENOUGH_PLAYERS,
+  state: GameState.NOT_ENOUGH_PLAYERS,
   activeSymbol: Symbol.X
 }
 
 const gameDataReducer = createReducer(
   initialState,
-  on(GameDataActions.setGameData, (state, {gameData}) => gameData),
-  on(GameDataActions.playerJoined, (state, {player}) => {
+  on(GameDataActions.setGameData, (state, {gameData}) => ({...state, ...gameData})),
+  on(GameDataActions.playerJoined, (state, {payload}) => {
     let players = Object.assign({}, state.players);
-    players[player.symbol] = player;
+    players[payload.player.symbol] = payload.player;
     return {...state, players};
   }),
-  on(GameDataActions.playerLeft, (state, {player}) => {
+  on(GameDataActions.playerLeft, (state, {payload}) => {
     let players = Object.assign({}, state.players);
-    delete players[player.symbol];
+    delete players[payload.player.symbol];
     return {...state, players};
   }),
-  on(GameDataActions.gameStatusChanged, (state, {status}) => ({...state, status})),
-  on(GameDataActions.activeSymbolChanged, (state, {activeSymbol}) => ({...state, activeSymbol})),
-  on(GameDataActions.boardChanged, (state, {board}) => ({...state, board})),
+  on(GameDataActions.gameStateChanged, (s, {payload}) => ({...s, state: payload.state})),
+  on(GameDataActions.activeSymbolChanged, (state, {payload}) => ({...state, activeSymbol: payload.activeSymbol})),
+  on(GameDataActions.boardChanged, (state, {payload}) => ({...state, board: payload.board})),
 );
 
 export function reducer(state: State | undefined, action: Action) {
