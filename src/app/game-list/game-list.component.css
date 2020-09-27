@@ -13,7 +13,6 @@ header {
 header .logo {
     color: #343a40;
     font-size: 3.5rem;
-    margin: 1rem;
     font-family: Lobster, sans-serif;
 }
 
@@ -28,10 +27,6 @@ header .sorting {
 .game-search input {
     margin-right: 1rem;
     width: 20rem;
-}
-
-header .btn-logout {
-    margin: 1rem;
 }
 
 .games {

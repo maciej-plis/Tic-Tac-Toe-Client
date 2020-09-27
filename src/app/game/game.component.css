@@ -43,17 +43,26 @@ header{
     grid-row: 4 / 5;
 }
 
+header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
 header h1 {
     color: #343a40;
     font-size: 3.5rem;
     font-family: Lobster, sans-serif;
 }
 
-header .btn {
-    position: absolute;
-    right: 2rem;
+header .gameName {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
 }
 
+header .controls {
+    text-align: right;
+}
 .rematch-button {
     margin: 2rem;
     padding: 1rem;

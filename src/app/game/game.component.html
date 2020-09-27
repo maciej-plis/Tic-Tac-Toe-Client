@@ -1,7 +1,10 @@
 <div id="game" class="card">
     <header class="card-header">
         <h1>TicTacToe</h1>
-        <button class="btn btn-danger" (click)="leave()">Leave</button>
+        <div class="gameName">{{ gameData.name }}</div>
+        <div class="controls">
+            <button class="btn btn-danger leave-btn" (click)="leave()">Leave</button>
+        </div>
     </header>
     <app-status-bar class="status-bar" [gameState]="gameData.state" [activePlayer]="gameData.players[gameData.activeSymbol]"></app-status-bar>
     <app-player-card class="player-card player1" *ngIf="gameData.players.X" [player]="gameData.players.X"></app-player-card>
