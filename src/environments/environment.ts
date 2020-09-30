@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: "http://beautiful-tic-tac-toe-backend.herokuapp.com/"
+  API_URL: "http://localhost:8080/"
 };
 
 /*
