@@ -12,6 +12,7 @@ import { GameState, State } from './store/game-data.reducer';
 })
 export class GameComponent implements OnInit {
 
+  errorMessage: string;
   gameData: State;
 
   constructor(
@@ -22,6 +23,7 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(state => state.gameData).subscribe(state => {
+      this.errorMessage = null;
       this.gameData = state;
     });
     this.store.dispatch(GameDataActions.loadGameData());
@@ -29,21 +31,22 @@ export class GameComponent implements OnInit {
 
   leave() {
     this.gameService.leave().subscribe(resp => {
-      if(resp.success) {
-        this.router.navigate(['games']);
-      }
+      this.router.navigate(['games']);
+    }, error => {
+      this.errorMessage = error.error;
     });
   }
 
   rematch() {
-    this.gameService.rematch().subscribe(resp => {
-      console.log(resp);
-    });
+    this.gameService.rematch().subscribe(null, error => this.setError(error.error));
   }
-
 
   isFinished(): boolean {
     return this.gameData.state == GameState.WIN || this.gameData.state == GameState.DRAW;
+  }
+
+  setError = (error: string) => {
+    this.errorMessage = error;
   }
 
 }

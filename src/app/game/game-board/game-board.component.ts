@@ -12,6 +12,7 @@ export class GameBoardComponent implements OnInit {
   Symbol = Symbol;
 
   @Input() board: Symbol[][];
+  @Input() errorCallback: Function;
 
   constructor(
     private gameService: GameService,
@@ -21,8 +22,6 @@ export class GameBoardComponent implements OnInit {
   }
 
   mark(x: number, y: number) {
-    this.gameService.mark(x ,y).subscribe(resp => {
-      console.log(resp);
-    })
+    this.gameService.mark(x ,y).subscribe(null, error => this.errorCallback(error.error));
   }
 }

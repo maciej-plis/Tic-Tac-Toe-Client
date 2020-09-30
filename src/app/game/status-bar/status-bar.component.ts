@@ -8,6 +8,7 @@ import { GameState, Player } from '../store/game-data.reducer';
 })
 export class StatusBarComponent implements OnInit {
 
+  @Input() errorMessage: string;
   @Input() gameState: GameState;
   @Input() activePlayer: Player;
 

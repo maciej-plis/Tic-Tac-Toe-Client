@@ -6,9 +6,9 @@
             <button class="btn btn-danger leave-btn" (click)="leave()">Leave</button>
         </div>
     </header>
-    <app-status-bar class="status-bar" [gameState]="gameData.state" [activePlayer]="gameData.players[gameData.activeSymbol]"></app-status-bar>
+    <app-status-bar class="status-bar" [errorMessage]="errorMessage" [gameState]="gameData.state" [activePlayer]="gameData.players[gameData.activeSymbol]"></app-status-bar>
     <app-player-card class="player-card player1" *ngIf="gameData.players.X" [player]="gameData.players.X"></app-player-card>
-    <app-game-board class="game-board" [board]="gameData.board"></app-game-board>
+    <app-game-board class="game-board" [board]="gameData.board" [errorCallback]="setError"></app-game-board>
     <app-player-card class="player-card player2" *ngIf="gameData.players.O" [player]="gameData.players.O"></app-player-card>
     <div class="rematch" *ngIf="isFinished()">
         <button class="btn btn-lg btn-block btn-dark" (click)="rematch()">REMATCH</button>

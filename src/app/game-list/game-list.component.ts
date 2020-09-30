@@ -16,6 +16,7 @@ export class GameListComponent implements OnInit {
 
   activeMethod: string = this.sortingMethods[0];
   filteredGames: GameInfo[] = [];
+  errorMessage: string;
 
   constructor(
     private authService: AuthenticationService,
@@ -48,7 +49,7 @@ export class GameListComponent implements OnInit {
         this.router.navigate(["game"]);
       },
       error => {
-        console.log(error);
+        this.errorMessage = error.error;
       }
     );
   }

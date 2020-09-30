@@ -4,7 +4,6 @@
 }
 
 header {
-    height: 10vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,11 +28,22 @@ header .sorting {
     width: 20rem;
 }
 
+.error-message {
+    padding: 1rem 0;
+    text-align: center;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-bottom: 1px solid #f5c6cb;
+}
+
 .games {
-    height: 90vh;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+}
+
+.games .alert {
+    text-align: center;
 }
 
 .game {

@@ -1,4 +1,4 @@
-<div id="games card">
+<div id="games" class="card">
     <header class="card-header">
         <h1 class="logo">TicTacToe</h1>
         <div class="game-search">
@@ -11,7 +11,9 @@
         </select>
         <button class="btn btn-danger btn-logout" (click)="logout()">logout</button>
     </header>
+    <div class="error-message" *ngIf="errorMessage">{{errorMessage}}</div>
     <div class="games card-body">
+        <div class="alert alert-info" *ngIf="filteredGames.length == 0">no games found</div>
         <div class="game" *ngFor="let game of filteredGames | gamesSorting:activeMethod">
             <div class="game-name">{{game.name}}</div>
             <div class="game-desc">
