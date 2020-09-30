@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { API_URL } from '../game-api.config';
 
@@ -35,6 +35,14 @@ export class GamesService {
   }
 
   joinTheGame(gameID: string): Observable<any> {
+    if(localStorage.getItem("activeGame") == gameID) {
+      return of("You already joined this game")
+    } 
+    
+    if(localStorage.getItem("activeGame")) {
+      return throwError({error: "You can't join another game before leaving previous"});
+    }
+
     return this.http.post(API_URL + `games/${gameID}/join`, null, {withCredentials: true}).pipe(
       tap(resp => localStorage.setItem("activeGame", gameID))
     );
