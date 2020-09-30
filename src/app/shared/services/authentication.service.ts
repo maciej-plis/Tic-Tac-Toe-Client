@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import { retry } from 'rxjs/operators';
-import { API_URL } from '../../game-api.config';
+import { environment } from 'src/environments/environment';
 import { SharedModule } from '../shared.module';
 
 interface LoginDetails {
@@ -29,11 +29,11 @@ export class AuthenticationService {
   ) { }
 
   register(registrationDetails: RegistrationDetails): Observable<any> {
-    return this.http.post(API_URL + "register", registrationDetails);
+    return this.http.post(environment.API_URL + "register", registrationDetails);
   }
 
   login(loginDetails: LoginDetails): Observable<any> {
-    return this.http.post(API_URL + "login", loginDetails, {withCredentials: true}).pipe(retry(1));
+    return this.http.post(environment.API_URL + "login", loginDetails, {withCredentials: true}).pipe(retry(1));
   }
 
   logout(): boolean {
