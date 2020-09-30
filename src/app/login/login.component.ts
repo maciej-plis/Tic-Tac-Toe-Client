@@ -36,12 +36,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  private loginSuccess = () => {
+  private loginSuccess = (resp) => {
     this.message = null;
+    localStorage.setItem("auth", resp)
+    console.log(resp);
     this.router.navigate(['games']);
   }
 
   private loginFailure = ({error}) => {
+    console.log(error);
     this.message = error;
   }
 }

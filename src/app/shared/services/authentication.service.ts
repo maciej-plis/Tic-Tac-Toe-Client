@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
@@ -25,7 +25,6 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
-    private cookieService: CookieService,
   ) { }
 
   register(registrationDetails: RegistrationDetails): Observable<any> {
@@ -33,18 +32,22 @@ export class AuthenticationService {
   }
 
   login(loginDetails: LoginDetails): Observable<any> {
-    return this.http.post(environment.API_URL + "login", loginDetails, {withCredentials: true}).pipe(retry(1));
+    return this.http.post(environment.API_URL + "login", loginDetails, {responseType: 'text'}).pipe(retry(1));
   }
 
   logout(): boolean {
     if(this.isAuthenticated()) {
-      this.cookieService.delete("Authorization");
+      localStorage.removeItem("auth");
       return true;
     }
     return false;
   }
 
   isAuthenticated(): boolean {
-    return this.cookieService.check("Authorization");
+    return localStorage.getItem("auth") !== null;
+  }
+
+  getHeaders(): HttpHeaders {
+    return new HttpHeaders().append("Authorization", localStorage.getItem("auth"));
   }
 }

@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { AuthenticationService } from '../shared/services/authentication.service';
 import { State } from './store/game-data.reducer';
 import { WSClient } from './WS_client';
 
@@ -14,7 +15,8 @@ export class GameService {
   wsClient: WSClient;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthenticationService
   ) {
     this.wsClient = new WSClient(environment.API_URL + "tic-tac-toe/");
   }
@@ -24,19 +26,19 @@ export class GameService {
   }
 
   getGameData(): Observable<any> {
-    return this.http.get<State>(environment.API_URL + `games/${localStorage.getItem("activeGame")}`, {withCredentials: true});
+    return this.http.get<State>(environment.API_URL + `games/${localStorage.getItem("activeGame")}`, {headers: this.authService.getHeaders()});
   }
 
   mark(x: number, y: number): Observable<any>  {
-    return this.http.post(environment.API_URL + `games/${localStorage.getItem("activeGame")}/mark`, {x, y}, {withCredentials: true});
+    return this.http.post(environment.API_URL + `games/${localStorage.getItem("activeGame")}/mark`, {x, y}, {headers: this.authService.getHeaders()});
   }
 
   rematch(): Observable<any>  {
-    return this.http.post(environment.API_URL + `games/${localStorage.getItem("activeGame")}/rematch`, null, {withCredentials: true});
+    return this.http.post(environment.API_URL + `games/${localStorage.getItem("activeGame")}/rematch`, null, {headers: this.authService.getHeaders()});
   }
 
   leave(): Observable<any> {
-    return this.http.post<{success: boolean, message: string}>(environment.API_URL + `games/${localStorage.getItem("activeGame")}/leave`, null, {withCredentials: true}).pipe(
+    return this.http.post<{success: boolean, message: string}>(environment.API_URL + `games/${localStorage.getItem("activeGame")}/leave`, null, {headers: this.authService.getHeaders()}).pipe(
       tap(() => localStorage.removeItem("activeGame"))
     );
   }
