@@ -37,6 +37,12 @@ export class GameService {
     return this.http.post(environment.API_URL + `games/${localStorage.getItem("activeGame")}/rematch`, null, {headers: this.authService.getHeaders()});
   }
 
+  join(gameID: string): Observable<any> {
+    return this.http.post(environment.API_URL + `games/${gameID}/join`, null, {headers: this.authService.getHeaders()}).pipe(
+      tap(resp => localStorage.setItem("activeGame", gameID))
+    );
+  }
+
   leave(): Observable<any> {
     return this.http.post<{success: boolean, message: string}>(environment.API_URL + `games/${localStorage.getItem("activeGame")}/leave`, null, {headers: this.authService.getHeaders()}).pipe(
       tap(() => localStorage.removeItem("activeGame"))

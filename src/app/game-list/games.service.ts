@@ -35,18 +35,4 @@ export class GamesService {
   removeGame(gameID: string): Observable<any> {
     return this.http.delete(environment.API_URL + `games/${gameID}`, {headers: this.authService.getHeaders()});
   }
-
-  joinTheGame(gameID: string): Observable<any> {
-    if(localStorage.getItem("activeGame") == gameID) {
-      return of("You already joined this game")
-    } 
-    
-    if(localStorage.getItem("activeGame")) {
-      return throwError({error: "You can't join another game before leaving previous"});
-    }
-
-    return this.http.post(environment.API_URL + `games/${gameID}/join`, null, {headers: this.authService.getHeaders()}).pipe(
-      tap(resp => localStorage.setItem("activeGame", gameID))
-    );
-  }
 }

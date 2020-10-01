@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../shared/services/authentication.service';
 import { GameInfo, GamesService } from './games.service';
 import { SortingMethods } from './games-sorting.pipe';
+import { GameService } from '../game/game.service';
 
 @Component({
   selector: 'app-game-list',
@@ -21,6 +22,7 @@ export class GameListComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private gamesService: GamesService,
+    private gameService: GameService,
     private router: Router
   ) { }
 
@@ -28,6 +30,11 @@ export class GameListComponent implements OnInit {
     if(!this.authService.isAuthenticated()) {
       this.router.navigate(['login']);
     }
+
+    if(localStorage.getItem("activeGame") !== null) {
+      this.gameService.leave().subscribe();
+    }
+
     this.gamesService.getGames().subscribe(resp => {
       this.allGames = resp;
       this.filteredGames = resp;
@@ -44,7 +51,7 @@ export class GameListComponent implements OnInit {
   }
 
   joinGame(gameID: string) {
-    this.gamesService.joinTheGame(gameID).subscribe(
+    this.gameService.join(gameID).subscribe(
       resp => {
         this.router.navigate(["game"]);
       },
