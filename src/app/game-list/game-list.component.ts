@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../shared/services/authentication.service';
+import { AuthenticationService } from '../auth/authentication.service';
 import { GameInfo, GamesService } from './games.service';
 import { SortingMethods } from './games-sorting.pipe';
 import { GameService } from '../game/game.service';

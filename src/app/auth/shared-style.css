@@ -1,0 +1,158 @@
+#container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--bg-color-dark);
+
+    font-size: 1.4em;
+}
+
+#container .wrapper {
+    max-width: 30em;
+    margin: 2em;
+    
+    box-shadow: 5px 5px 25px #000;
+}
+
+/* HEADER */
+
+h1 {
+    padding: 0.4em;
+
+    background-color: var(--special-color-3);
+
+    font-family: 'Permanent Marker', 'Roboto';
+    text-align: center;
+}
+
+.logo-img {
+    background-color: var(--text-color);
+
+    -webkit-mask-image: url('../../assets/imgs/logo.svg');
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+
+    mask-image: url('../../assets/imgs/logo.svg') ;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+}
+
+.logo-img::before {
+    content: '';
+    margin-right: 2em;
+    vertical-align: middle;
+}
+
+.message {
+    padding: 0.6em 0.2em;
+    
+    text-align: center;
+    font-weight: 300;
+    font-size: 0.8em;
+
+    background-color: var(--bg-color-light-2);
+    color: var(--special-color-2);
+}
+
+/* FORM */
+
+form {
+    padding: 1em 1.5em;
+
+    background-color: var(--bg-color-light-1);
+}
+
+.form-group {
+    margin-bottom: 1em;
+
+    font-size: 0.8em;
+}
+
+.form-group label {
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.4em;
+    margin: 0.4em 0;
+
+    background-color: var(--bg-color-light-2);
+
+    font-size: 1em;
+
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+
+}
+
+button {
+    width: 100%;
+    padding: 0.6em;
+
+    background-color: var(--special-color-3);
+    color: var(--bg-color-light-1);
+
+    font-size: 0.8em;
+
+    border: none;
+}
+
+input:focus, button:focus {
+    outline: 1px solid var(--special-color-4);
+}
+
+.separator {
+    width: 100%;
+    margin: 1.2em 0;
+
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: 500;
+
+    border-bottom: 1px solid var(--text-color);
+    line-height: 0.1em;
+    opacity: 0.3;
+}
+
+.separator span {
+    background: var(--bg-color-light-1);
+    padding: 0 10px;
+}
+
+.controls button:not(:first-child) {
+   margin-top: 0.5em; 
+}
+
+/* MEDIA MOBILE */
+
+@media screen and (max-width: 576px) {
+    #container {
+        display: block;
+    }
+
+    h1 {
+        font-size: 12vw;
+    }
+    
+    #container .wrapper {
+        min-height: 100vh;
+        width: 100vw;
+        max-width: auto;
+        margin: 0;
+        
+        display: grid;
+        grid-template-rows: min-content 1fr;
+
+        box-shadow: none;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+

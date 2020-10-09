@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../shared/services/authentication.service';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['../shared-style.css', './login.component.css']
 })
 export class LoginComponent implements OnInit {
-  message: string;
-
   loginForm = this.fb.group({
     username: [''],
     password: [''],
   });
+
+  message: string;
 
   constructor(
     private authService: AuthenticationService,
@@ -29,20 +29,30 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.message = null;
+
     if(this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(this.loginSuccess, this.loginFailure);
     } else {
-      this.message = "Please fill in all required fields";
+      this.message = "Please fill in all fields";
     }
   }
 
+  loginAsGuest() {
+    
+  }
+
   private loginSuccess = (resp) => {
-    this.message = null;
     localStorage.setItem("auth", resp)
     this.router.navigate(['games']);
   }
 
-  private loginFailure = ({error}) => {
-    this.message = error;
+  private loginFailure = ({error, status}) => {
+    if(status == 401) {
+      this.message = error;
+      return;
+    } 
+
+    this.message = 'Unknown error occured';
   }
 }

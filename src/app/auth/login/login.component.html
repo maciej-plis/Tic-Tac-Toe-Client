@@ -1,0 +1,27 @@
+<div id="container">
+    <div class="wrapper">
+        <header>
+            <h1 class="logo">
+                <span class="logo-img"></span>
+                TicTacToe
+            </h1>
+            <div class="message" *ngIf="message">{{ message }}</div>
+        </header>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" formControlName="username" focusThis required>        
+            </div> 
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" formControlName="password" required> 
+            </div>
+            <button type="submit">Sign In</button>
+            <div class="separator"><span>or</span></div>
+            <div class="controls">
+                <button routerLink="/register">Sign up</button>
+                <button type="button" class="guest-option" (click)="loginAsGuest()">Play as Guest</button>
+            </div>
+        </form>
+    </div>
+</div>

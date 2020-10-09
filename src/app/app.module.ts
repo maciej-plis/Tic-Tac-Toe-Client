@@ -6,10 +6,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthModule } from './auth/auth.module';
 import { GameListModule } from './game-list/game-list.module';
 import { GameModule } from './game/game.module';
-import { LoginModule } from './login/login.module';
-import { RegisterModule } from './register/register.module';
 
 
 @NgModule({
@@ -19,8 +18,7 @@ import { RegisterModule } from './register/register.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RegisterModule,
-    LoginModule,
+    AuthModule,
     GameListModule,
     GameModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),

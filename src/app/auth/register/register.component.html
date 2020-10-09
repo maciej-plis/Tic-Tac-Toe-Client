@@ -1,0 +1,46 @@
+<div id="container">
+    <div class="wrapper">
+        <header>
+            <h1 class="logo">
+                <span class="logo-img"></span>
+                TicTacToe
+            </h1>
+            <div class="message" *ngIf="message">{{ message }}</div>
+        </header>
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" formControlName="email" focusThis required email>
+                <ul *ngFor="let error of getErrorsFor('email') | keyvalue">
+                    <li class="feedback">{{error.value}}</li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" formControlName="username" required>
+                <ul *ngFor="let error of getErrorsFor('username') | keyvalue">
+                    <li class="feedback">{{error.value}}</li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" formControlName="password" required>
+                <ul *ngFor="let error of getErrorsFor('password') | keyvalue">
+                    <li class="feedback">{{error.value}}</li>
+                </ul>
+            </div>         
+            <div class="form-group">
+                <label for="verifyPassword">Confirm password:</label>
+                <input type="password" id="verifyPassword" formControlName="verifyPassword" required>
+                <ul *ngFor="let error of getErrorsFor('verifyPassword') | keyvalue">
+                    <li class="feedback">{{error.value}}</li>
+                </ul>
+            </div>
+            <button type="submit">Sign Up</button>
+            <div class="separator"><span>or</span></div>
+            <div class="controls">
+                <button routerLink="/login">Sign in</button>
+            </div>
+        </form>
+    </div>
+</div>

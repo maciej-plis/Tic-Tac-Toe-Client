@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { AuthenticationService } from '../shared/services/authentication.service';
+import { AuthenticationService } from '../auth/authentication.service';
 import { State } from './store/game-data.reducer';
 import { WSClient } from './WS_client';
 

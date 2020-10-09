@@ -1,33 +1,52 @@
-@import "../node_modules/bootstrap/scss/bootstrap";
-
-
 @font-face {
     font-family: 'Roboto';
     src: url('assets/fonts/Roboto/Roboto-Regular.ttf')  format('truetype'); 
+    font-weight: normal;
 }
 
 @font-face {
-    font-family: 'Lobster';
-    src: url('assets/fonts/Lobster/Lobster-Regular.ttf')  format('truetype');
+    font-family: 'Roboto';
+    src: url('assets/fonts/Roboto/Roboto-Light.ttf')  format('truetype'); 
+    font-weight: 300;
 }
 
 @font-face {
-    font-family: 'Luckiest Guy';
-    src: url('assets/fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf')  format('truetype');
+    font-family: 'Roboto';
+    src: url('assets/fonts/Roboto/Roboto-Thin.ttf')  format('truetype'); 
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'Permanent Marker';
+    src: url('assets/fonts/Permanent_Marker/PermanentMarker-Regular.ttf');
+    font-weight: normal;
+}
+
+:root {
+    --bg-color-dark: #2F4858;
+
+    --bg-color-light-1: #ffffff;
+    --bg-color-light-2: #F5F3F4;
+    --bg-color-light-3: #D3D3D3;
+
+    --text-color: #0B090A;
+
+    --special-color-1: #E5383B;
+    --special-color-2: #BA181B;
+    --special-color-3: #993333;
+    --special-color-4: #660708;
+
+    --bonus-color-1: #34486C;
 }
 
 * {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: Roboto, sans-serif;
-}
-
-.submitted .ng-invalid {
-    @extend .is-invalid;
-}
-
-.submitted .ng-valid {
-    @extend .is-valid;
+    font-size: 16px;
+    color: var(--color-palette-1);
 }

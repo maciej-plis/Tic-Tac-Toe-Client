@@ -1,0 +1,9 @@
+.form-group .feedback {
+    margin-bottom: 0.5em;
+
+    font-weight: 300;
+    font-size: 0.8em;
+    list-style: none;
+    
+    color: var(--special-color-2);
+}

@@ -30,7 +30,6 @@
     "@ngrx/schematics": "^10.0.0",
     "@ngrx/store": "^10.0.0",
     "@ngrx/store-devtools": "^10.0.0",
-    "bootstrap": "^4.5.2",
     "express": "^4.17.1",
     "net": "^1.0.2",
     "ngx-cookie-service": "^10.0.1",
