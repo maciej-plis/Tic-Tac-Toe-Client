@@ -18,33 +18,6 @@
 
 /* HEADER */
 
-h1 {
-    padding: 0.4em;
-
-    background-color: var(--special-color-3);
-
-    font-family: 'Permanent Marker', 'Roboto';
-    text-align: center;
-}
-
-.logo-img {
-    background-color: var(--text-color);
-
-    -webkit-mask-image: url('../../assets/imgs/logo.svg');
-    -webkit-mask-size: contain;
-    -webkit-mask-repeat: no-repeat;
-
-    mask-image: url('../../assets/imgs/logo.svg') ;
-    mask-size: contain;
-    mask-repeat: no-repeat;
-}
-
-.logo-img::before {
-    content: '';
-    margin-right: 2em;
-    vertical-align: middle;
-}
-
 .message {
     padding: 0.6em 0.2em;
     
@@ -133,7 +106,7 @@ input:focus, button:focus {
         display: block;
     }
 
-    h1 {
+    app-logo {
         font-size: 12vw;
     }
     

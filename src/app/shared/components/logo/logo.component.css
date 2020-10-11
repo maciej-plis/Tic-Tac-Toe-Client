@@ -1,0 +1,27 @@
+.logo {
+    padding: 0.4em;
+
+    background-color: var(--special-color-3);
+
+    font-family: 'Permanent Marker', 'Roboto';
+    font-size: 2em;
+    text-align: center;
+}
+
+.logo-img {
+    background-color: var(--text-color);
+
+    -webkit-mask-image: url('../../../../assets/imgs/logo.svg');
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+
+    mask-image: url('../../../../assets/imgs/logo.svg') ;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+}
+
+.logo-img::before {
+    content: '';
+    margin-right: 2em;
+    vertical-align: middle;
+}

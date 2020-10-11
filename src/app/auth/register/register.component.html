@@ -1,10 +1,7 @@
 <div id="container">
     <div class="wrapper">
         <header>
-            <h1 class="logo">
-                <span class="logo-img"></span>
-                TicTacToe
-            </h1>
+            <app-logo></app-logo>
             <div class="message" *ngIf="message">{{ message }}</div>
         </header>
         <form [formGroup]="registerForm" (ngSubmit)="register()">
