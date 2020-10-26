@@ -1,34 +1,46 @@
 <div id="container">
     <header>
         <app-logo></app-logo>
-        <div>
+        <div class="games-filter">
             <input type="text" placeholder="Searched game..." #keyword (keyup)="filterGames(keyword.value)">
         </div>
-        <select #sorting (change)="applySorting(sorting.value)">
-            <option value="{{method}}" *ngFor="let method of sortingMethods">
-                {{formatSortingMethodName(method)}}
-            </option>
-        </select>
-        <button (click)="logout()">logout</button>
-    </header>
-    <div *ngIf="errorMessage">{{errorMessage}}</div>
-    <div>
-        <div *ngIf="filteredGames.length == 0">no games found</div>
-        <div *ngFor="let game of filteredGames | gamesSorting:activeMethod">
-            <div>{{game.name}}</div>
-            <div>
-                <div>
-                    <span>x</span>
-                    {{game.players.X ? game.players.X : "empty&nbsp;slot"}}
-                </div>
-                <div>
-                    <span>o</span>
-                    {{game.players.O ? game.players.O : "empty&nbsp;slot"}}
-                </div>
-            </div>
-            <div>
-                <button (click)="joinGame(game.id)">Join</button>
+        <div class="menu">
+            <button class="menu-btn" (click)="toggleMenu()">&#9660;</button>
+            <div class="menu-items">
+                <button class="menu-item sorting">
+                    sorting options
+                </button>
+                <div class="separator"></div>
+                <button class="menu-item logout" (click)="logout()">
+                    logout
+                </button>
             </div>
         </div>
-    </div>
+    </header>
+    <div class="message" *ngIf="message">{{message}}</div>
+    <main>
+        <div class="games">
+            <div class="game" *ngIf="filteredGames.length == 0">no games found</div>
+            <div class="game" *ngFor="let game of filteredGames | gamesSorting:activeMethod">
+                <div class="name">{{game.name}}</div>
+                <div class="players">
+                    <div class="player">
+                        {{game.players.X ? game.players.X : "empty&nbsp;slot"}}
+                    </div>
+                    <span>vs</span>
+                    <div class="player">
+                        {{game.players.O ? game.players.O : "empty&nbsp;slot"}}
+                    </div>
+                </div>
+                <div class="controls">
+                    <button class="spectate">
+                        <img src="../../assets/imgs/binoculars.svg" alt="watch game" title="watch game">
+                        <span>Spectate</span>
+                    </button>
+                    <button class="play" (click)="joinGame(game.id)">Play</button>
+                    <button class="remove" title="Remove Game">&#10060;</button>
+                </div>
+            </div>
+        </div>
+    </main>
 </div>

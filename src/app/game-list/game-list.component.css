@@ -1,93 +1,308 @@
-#games {
-    width: 100vw;
+#container {
     height: 100vh;
+
+    display: grid;
+    grid: minmax(10vh, min-content) repeat(2, auto) / auto;    
+
+    background-color: var(--dark-3);
 }
+
+/* HEADER */
 
 header {
-    display: flex;
-    justify-content: space-between;
+    padding: 1em;
+
+    display: grid;
+    grid: auto / min-content auto min-content;
+    justify-items: center;
     align-items: center;
+    
+    background-color: var(--main-1);
 }
 
-header .logo {
-    color: #343a40;
-    font-size: 3.5rem;
-    font-family: Lobster, sans-serif;
+app-logo {
+    justify-self: left;
 }
 
-header .sorting {
-    width: min-content;
+.games-filter input {
+    width: 20em;
+    padding: 0.6em;
+
+    background-color: var(--light-2);
+
+    border: none;
+    outline: none;
 }
 
-.game-search {
-    display: flex;
+.games-filter input:focus {
+    background-color: var(--light-1);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.game-search input {
-    margin-right: 1rem;
-    width: 20rem;
+.menu {
+    position: relative;
+
+    display: inline-block;
+    justify-self: right;
 }
 
-.error-message {
-    padding: 1rem 0;
+.menu-btn {
+    width: 3em;
+    height: 3em;
+
+    background-color: var(--main-1);
+    color: white;
+
     text-align: center;
-    color: #721c24;
-    background-color: #f8d7da;
-    border-bottom: 1px solid #f5c6cb;
+
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 
-.games {
-    display: flex;
-    flex-direction: column;
+.menu-btn:focus, .menu-btn:hover,
+.menu-item:focus, .menu-item:hover {
+    background-color: var(--bonus-1);
+}
+
+.menu-items {
+    position: absolute;
+    right: 0;
+
+    display: none;
+
+    background-color: var(--dark-1);
+
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    overflow: auto;
+    z-index: 1;
+}
+
+.menu .separator {
+    height: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.menu-item {
+    width: 100%;
+    max-width: 20em;
+    padding: 1em 2em;
+
+    color: white;
+    background-color: inherit;
+
+    text-align: center;
+    text-transform: capitalize;
+    font-style: italic;
+
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.menu-item.logout:focus,
+.menu-item.logout:hover {
+    background-color: var(--main-1);
+    color: white;
+}
+
+.show {
+    display: block;
+}
+
+/* MESSAGE */
+
+.message {
+    padding: 1em 0;
+
+    background-color: var(--dark-2);
+    color: var(--main-2);
+
+    text-align: center;
+    font-size: 1.2em;
+}
+
+/* MAIN */
+
+main {
     overflow-y: scroll;
 }
 
-.games .alert {
+main .games {
+    padding: 2em;
+
+    display: grid;
+    grid-gap: 2em;
+    grid-template-columns: repeat(auto-fill, minmax(18em, 1fr));
+    justify-items: center;
+    align-items: center;
+}
+
+main .game {
+    position: relative;
+
+    display: grid;
+    grid-template-rows: min-content auto min-content;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--dark-4);
+
+    box-shadow: 5px 5px 12px 5px rgba(0,0,0,0.4);
+}
+
+.game .name {
+    padding: 1em 0.5em;
+
+    background-color: var(--dark-2);
+    color: var(--light-3);
+
+    font-size: 1.2em;
+    font-weight: bold;
     text-align: center;
 }
 
-.game {
-    height: min-content;
-    display: inline-grid;
-    grid-template-columns: 26rem minmax(min-content, auto) min-content;
-    border: 1px solid rgba(0,0,0,.125);
-    margin-bottom: 1.25rem;
-}
+.game .players {
+    padding: 1.5em 0.5em;
 
-.game > * {
-    height: 100%;
-    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1.25rem;
-    overflow: hidden;
-}
-
-.game .game-name {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.game .game-desc {
-    border-right: 1px solid rgba(0,0,0,.125);
-    border-left: 1px solid rgba(0,0,0,.125);
-    flex-wrap: wrap;
     justify-content: space-evenly;
-}
-
-.game .game-desc .player {
-    display: flex;
-    justify-content: center;
     align-items: center;
-    flex-wrap: nowrap;
-    font-size: 1.3rem;
+    flex-direction: column;
 }
 
-.game .game-desc .player .player-symbol {
-    text-transform: uppercase;
-    font-family: 'Luckiest Guy', sans-serif;
-    margin: 0.3rem;
-    color: #343a40;
+.game .player {
+    color: var(--light-1);
+
+    font-size: 1.5em;
 }
 
+.game .players span {
+    margin: 0.1em;
+
+    color: var(--main-1);
+
+    font-family: 'Permanent Marker', 'Roboto';
+    font-size: 2.5em;
+}
+
+.game .controls {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0.5em;
+}
+
+.game .controls button {
+    display: block;
+    padding: 0.5em 0.75em;
+
+    color: var(--light-1);
+    
+    font-size: 1em;
+
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.game .controls .play {
+    width: 60%;
+
+    background-color: var(--main-1);
+}
+
+.game .controls .spectate {
+    background-color: var(--bonus-2);
+}
+
+.spectate img {
+    height: 1.1em;
+}
+
+.spectate span {
+    display: none;
+}
+
+.game .controls .remove {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    background-color: inherit;
+}
+
+.game .controls .remove:hover,
+.game .controls .remove:focus {
+    color: var(--main-1);
+}
+
+/* MEDIA TABLET */
+
+@media screen and (max-width: 768px) {
+
+    /* HEADER */
+
+    header {
+        grid: auto / auto min-content;
+    }
+
+    header app-logo {
+        font-size: 1.2em;
+        justify-self: center;
+    }
+
+    .menu {
+        font-size: 1.15em;
+    }
+
+    .games-filter {
+        display: none;
+    }
+
+    /* MAIN */
+
+    main .games {
+        grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    }
+
+    .game .controls .play,
+    .game .controls .spectate {
+        width: 45%; 
+    }
+
+    .spectate img {
+        display: none;
+    }
+
+    .spectate span {
+        display: block;
+    }
+
+}
+
+/* MEDIA MOBILE */
+
+@media screen and (max-width: 576px) {
+
+
+    /* HEADER */
+
+    header app-logo {
+        font-size: 5vw;
+    }
+
+    /* MAIN */
+
+    .game .controls {
+        display: grid;
+        grid-template-columns: 100% ;
+        justify-items: center;
+        gap: 1em;
+    }
+
+    .game .controls .play,
+    .game .controls .spectate {
+        width: 90%; 
+    }
+}

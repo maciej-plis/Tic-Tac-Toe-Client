@@ -5,7 +5,7 @@
 }
 
 .logo-img {
-    background-color: var(--text-color);
+    background-color: var(--dark-5);
 
     -webkit-mask-image: url('../../../../assets/imgs/logo.svg');
     -webkit-mask-size: contain;
