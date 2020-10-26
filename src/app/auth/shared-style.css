@@ -69,7 +69,11 @@ form {
 
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 0;
+}
 
+.form-group input:focus {
+    outline: 1px solid var(--dark-2);
+    background-color: var(--dark-1);
 }
 
 button {
@@ -82,10 +86,13 @@ button {
     font-size: 0.8em;
 
     border: none;
+    cursor: pointer;
 }
 
-input:focus, button:focus {
+button:focus,
+button:hover {
     outline: 1px solid var(--dark-2);
+    background-color: var(--main-2);
 }
 
 .separator {
@@ -100,7 +107,6 @@ input:focus, button:focus {
 
     border-bottom: 1px solid var(--dark-1);
     line-height: 0.1em;
-    /* opacity: 0.3; */
 }
 
 .separator span {

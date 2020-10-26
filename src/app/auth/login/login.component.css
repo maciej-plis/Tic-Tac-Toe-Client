@@ -1,3 +1,8 @@
 button.guest-option {
     background-color: var(--bonus-2);
 }
+
+button.guest-option:focus,
+button.guest-option:hover {
+    background-color: var(--bonus-1);
+}
