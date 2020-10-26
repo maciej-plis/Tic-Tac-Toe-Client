@@ -2,8 +2,8 @@
     <div class="wrapper">
         <header>
             <app-logo></app-logo>
-            <div class="message" *ngIf="message">{{ message }}</div>
         </header>
+        <div class="message" *ngIf="message">{{ message }}</div>
         <form [formGroup]="registerForm" (ngSubmit)="register()">
             <div class="form-group">
                 <label for="email">Email:</label>
