@@ -14,6 +14,14 @@ export class GameComponent implements OnInit {
 
   errorMessage: string;
   gameData: State;
+  
+  messages = [
+    {sender: "alfa1", content: "alfa alfa"},
+    {sender: "alfa1", content: "beta alfa"},
+    {sender: "RICO5k", content: "gamma delta gamma delta gamma delta gamma delta gamma delta gamma delta"},
+    {sender: "alfa1", content: "hello hello"},
+    {sender: "RICO5k", content: "world?"}
+  ]
 
   constructor(
     private gameService: GameService,

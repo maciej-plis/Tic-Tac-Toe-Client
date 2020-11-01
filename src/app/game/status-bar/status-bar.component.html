@@ -1,8 +1,8 @@
 <div class="status-bar">
-    <div class="alert alert-danger" *ngIf="errorMessage">
+    <div class="message">
+        {{ getMessage() }}
+    </div>
+    <div class="error-message" *ngIf="errorMessage">
         {{ errorMessage }}
     </div>
-    <div class="alert alert-info">
-        <h2>{{ getMessage() }}</h2>
-    </div>
-</div>
+</div>  

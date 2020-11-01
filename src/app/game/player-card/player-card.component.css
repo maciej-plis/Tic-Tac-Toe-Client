@@ -1,34 +1,53 @@
-.playerCard {
-    width: 15rem;
-    height: 15rem;
-    border: 1px solid #343a40;
+.player-card {
+    height: 100%;
+
+    background-color: var(--dark-2);
+
+    text-align: center;
 }
 
-.playerName {
-    height: 30%;
+.wrapper {
+    display: flex;
 }
 
-.playerName h3 {
-    margin: 0;
+.name {
+    padding: 0.5em;
+
+    background-color: var(--dark-1);
+    color: var(--light-1);
+
+    font-size: 1.5em;
+    
+    overflow: hidden;
 }
 
-.playerSymbol {
-    height: 70%;
-    border-top: 1px solid #343a40;
-}
+.symbol, .win-count {
+    width: 50%;
 
-.symbol {
-    font-family: 'Luckiest Guy', sans-serif;
-    height: 6rem;
-    width: 6rem;
-    font-size: 4rem;
-    background-color: rgba(0, 0, 0, 0.03);
-    border: 1px solid  rgba(0,0,0,.125);
-    border-radius: 50%;
-}
-
-.playerName, .playerSymbol, .symbol {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.symbol span {
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0.5em;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--main-1);
+    
+    font-size: 2em;
+    font-family: 'Permanent Marker', 'Roboto';
+
+    border-radius: 50%;
+}
+
+.win-count {
+    color: var(--light-1);
+
+    font-size: 2em;
 }

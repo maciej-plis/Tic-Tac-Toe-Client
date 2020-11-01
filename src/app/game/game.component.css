@@ -1,70 +1,196 @@
-#game {
-    width: 100vw;
-    height: 100vh;
+#container {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 1fr 3fr 5fr 3fr;
+    grid: minmax(10vh, min-content) minmax(90vh, auto) / auto;    
+
+    background-color: var(--dark-4);
 }
 
-header, .status-bar, .player-card, .game-board, .rematch {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-header{
-    height: 10vh;
-    grid-column: 1 / 4;
-    grid-row: 1 / 2;
-}
-
-.status-bar {
-    grid-column: 1 / 4;
-    grid-row: 2 / 3;
-}
-
-.player1 {
-    grid-column: 1 / 2;
-    grid-row: 3 / 4;
-}
-
-.game-board {
-    grid-column: 2 / 3;
-    grid-row: 3 / 4;
-}
-
-.player2 {
-    grid-column: 3 / 4;
-    grid-row: 3 / 4;
-}
-
-.rematch {
-    grid-column: 2 / 3;
-    grid-row: 4 / 5;
-}
+/* HEADER */
 
 header {
+    padding: 1em;
+
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid: auto / repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    
+    background-color: var(--main-1);
 }
 
-header h1 {
-    color: #343a40;
-    font-size: 3.5rem;
-    font-family: Lobster, sans-serif;
+app-logo {
+    justify-self: left;
 }
 
-header .gameName {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
+header .game-name {
+    color: var(--light-3);
+    
+    font-size: 1.65em;
 }
 
 header .controls {
-    text-align: right;
+    justify-self: right;
 }
-.rematch-button {
-    margin: 2rem;
-    padding: 1rem;
-    font-size: 1.5rem;
+
+header .leave-btn {
+    padding: 0.5em;
+
+    background-color: var(--bonus-2);
+    color: var(--light-1);
+
+    font-size: 1.2em;
+    text-transform: capitalize;
+
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+header .leave-btn:hover,
+header .leave-btn:focus {
+    background-color: var(--bonus-1);
+}
+
+/* MAIN */
+
+main {
+    display: grid;
+    grid: 1fr min-content 1fr / repeat(2, auto);
+    justify-items: center;
+    align-items: center;
+}
+
+app-status-bar,
+app-game-board,
+.rematch {
+    grid-column: 1 / 2;
+
+    margin: 1em;
+}
+
+.rematch-btn {
+    padding: 0.5em 3.5em;
+
+    background-color: var(--bonus-2);
+    color: var(--light-2);
+
+    font-size: 1.5em;
+    text-transform: uppercase;
+
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.rematch-btn:focus,
+.rematch-btn:hover {
+    background-color: var(--bonus-1);
+}
+
+.side-panel {
+    grid-row: 1 / 4;
+    grid-column: 2 / 3;
+
+    width: 80%;
+    min-width: 25em;
+    max-width: 40em;
+    height: 85%;
+    margin: 1em;
+    padding: 1em;
+
+    display: grid;
+    grid: min-content auto / repeat(2, 1fr);
+    gap: 0.5em;
+
+    background-color: var(--dark-3);
+}
+
+.chat {
+    grid-column: 1 / 3;
+
+    display: grid;
+    grid: auto min-content / auto;
+}
+
+.chat .messages {
+    background-color: var(--dark-2);
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-wrap: normal;
+}
+
+.chat .message {
+    display: block;
+    max-width: 80%;
+    padding: 0.5em;
+    margin: 0.25em 0.25em 0 0.25em;
+
+    align-self: flex-start;
+
+    background-color: var(--dark-3);
+    color: var(--light-2);
+
+    border-radius: 5px;
+}
+
+.chat .message.outgoing {
+    align-self: flex-end;
+    background-color: var(--dark-1);
+}
+
+.chat form {
+    display: flex;
+
+    border-top: 0.5em solid var(--dark-3);
+}
+
+.chat form input {
+    width: 85%;
+    padding: 0.5em;
+
+    background-color: var(--dark-2);
+    color: var(--light-2);
+
+    outline: none;
+    border: none;
+}
+
+.chat form input:focus {
+    background-color: var(--dark-1);
+}
+
+.chat form button {
+    width: 15%;
+
+    background-color: var(--bonus-2);
+    color: var(--light-2);
+
+    border: none;
+    outline: none;
+}
+
+.chat form button:focus, 
+.chat form button:hover {
+    background-color: var(--bonus-1);
+}
+
+@media screen and (max-width: 1150px) {
+    main {
+        grid: repeat(4, auto) / auto;
+    }
+
+    app-status-bar,
+    app-game-board,
+    .rematch,
+    .side-panel {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .side-panel {
+        height: 50em;
+    }
 }
