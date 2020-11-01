@@ -17,28 +17,30 @@
             </div>
         </div>
     </header>
-    <div class="message" *ngIf="message">{{message}}</div>
     <main>
-        <div class="games">
-            <div class="game" *ngIf="filteredGames.length == 0">no games found</div>
-            <div class="game" *ngFor="let game of filteredGames | gamesSorting:activeMethod">
-                <div class="name">{{game.name}}</div>
-                <div class="players">
-                    <div class="player">
-                        {{game.players.X ? game.players.X : "empty&nbsp;slot"}}
+        <div class="message" *ngIf="message">{{message}}</div>
+        <div class="games-empty" *ngIf="filteredGames.length == 0">Game list is empty</div>
+        <div class="games" *ngIf="filteredGames.length > 0">
+            <div class="games-wrapper">
+                <div class="game" *ngFor="let game of filteredGames | gamesSorting:activeMethod">
+                    <div class="name">{{game.name}}</div>
+                    <div class="players">
+                        <div class="player">
+                            {{game.players.X ? game.players.X : "empty&nbsp;slot"}}
+                        </div>
+                        <span>vs</span>
+                        <div class="player">
+                            {{game.players.O ? game.players.O : "empty&nbsp;slot"}}
+                        </div>
                     </div>
-                    <span>vs</span>
-                    <div class="player">
-                        {{game.players.O ? game.players.O : "empty&nbsp;slot"}}
+                    <div class="controls">
+                        <button class="spectate">
+                            <img src="../../assets/imgs/binoculars.svg" alt="watch game" title="watch game">
+                            <span>Spectate</span>
+                        </button>
+                        <button class="play" (click)="joinGame(game.id)">Play</button>
+                        <button class="remove" title="Remove Game">&#10060;</button>
                     </div>
-                </div>
-                <div class="controls">
-                    <button class="spectate">
-                        <img src="../../assets/imgs/binoculars.svg" alt="watch game" title="watch game">
-                        <span>Spectate</span>
-                    </button>
-                    <button class="play" (click)="joinGame(game.id)">Play</button>
-                    <button class="remove" title="Remove Game">&#10060;</button>
                 </div>
             </div>
         </div>

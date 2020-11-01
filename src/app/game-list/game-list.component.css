@@ -2,7 +2,7 @@
     height: 100vh;
 
     display: grid;
-    grid: minmax(10vh, min-content) repeat(2, auto) / auto;    
+    grid: minmax(10vh, min-content) auto / auto;    
 
     background-color: var(--dark-3);
 }
@@ -125,10 +125,17 @@ app-logo {
 /* MAIN */
 
 main {
-    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
 }
 
 main .games {
+    overflow-y: scroll;
+}
+
+main .games .games-wrapper {
     padding: 2em;
 
     display: grid;
@@ -136,6 +143,18 @@ main .games {
     grid-template-columns: repeat(auto-fill, minmax(18em, 1fr));
     justify-items: center;
     align-items: center;
+}
+
+main .games-empty {
+    margin: 1em;
+    padding: 1em 0.5em;
+
+    background-color: var(--dark-2);
+    color: var(--light-3);
+
+    font-size: 1.2em;
+    font-weight: 300;
+    text-align: center;
 }
 
 main .game {
@@ -159,7 +178,7 @@ main .game {
     color: var(--light-3);
 
     font-size: 1.2em;
-    font-weight: bold;
+    font-weight: 300;
     text-align: center;
 }
 
