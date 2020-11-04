@@ -232,9 +232,22 @@ main .game {
     background-color: var(--main-1);
 }
 
+.game .controls .play:hover, 
+.game .controls .play:focus,
+.game .controls .remove:hover,
+.game .controls .remove:focus {
+    background-color: var(--main-2);
+} 
+
 .game .controls .spectate {
     background-color: var(--bonus-2);
 }
+
+.game .controls .spectate:hover, 
+.game .controls .spectate:focus {
+    background-color: var(--bonus-1);
+} 
+
 
 .spectate img {
     height: 1.1em;
@@ -250,11 +263,6 @@ main .game {
     right: 0;
 
     background-color: inherit;
-}
-
-.game .controls .remove:hover,
-.game .controls .remove:focus {
-    color: var(--main-1);
 }
 
 /* MEDIA TABLET */
