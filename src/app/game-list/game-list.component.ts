@@ -84,9 +84,4 @@ export class GameListComponent implements OnInit {
 
     return formattedName;
   }
-
-  toggleMenu() {
-    document.querySelector('.menu-items').classList.toggle('show');
-  } 
-
 }

@@ -39,6 +39,8 @@ app-logo {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
+/* MENU */
+
 .menu {
     position: relative;
 
@@ -46,26 +48,37 @@ app-logo {
     justify-self: right;
 }
 
-.menu-btn {
-    width: 3em;
-    height: 3em;
-
-    background-color: var(--main-1);
-    color: white;
-
-    text-align: center;
+.menu button {
+    background-color: inherit;
 
     border: none;
     outline: none;
     cursor: pointer;
 }
 
-.menu-btn:focus, .menu-btn:hover,
-.menu-item:focus, .menu-item:hover {
-    background-color: var(--bonus-1);
+.menu .menu-trigger {
+    width: 3em;
+    height: 3em;
+
+    background-color: var(--main-1);
+    color: var(--light-1);
+
+    text-align: center;
 }
 
-.menu-items {
+.menu:focus-within .menu-items {
+    display: block;
+}
+
+.menu:focus-within .menu-trigger,
+.menu .menu-trigger:hover,
+.menu .menu-item:focus,
+.menu .menu-item:hover {
+    background-color: var(--bonus-1);
+    color: var(--light-1);
+}
+
+.menu .menu-items {
     position: absolute;
     right: 0;
 
@@ -74,7 +87,6 @@ app-logo {
     background-color: var(--dark-1);
 
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    overflow: auto;
     z-index: 1;
 }
 
@@ -83,31 +95,20 @@ app-logo {
     border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
-.menu-item {
+.menu .menu-item {
     width: 100%;
+    min-width: 15em;
     max-width: 20em;
     padding: 1em 2em;
 
-    color: white;
-    background-color: inherit;
+    color: var(--light-3);
 
     text-align: center;
     text-transform: capitalize;
-    font-style: italic;
-
-    border: none;
-    outline: none;
-    cursor: pointer;
 }
 
-.menu-item.logout:focus,
-.menu-item.logout:hover {
+.menu .menu-item.logout {
     background-color: var(--main-1);
-    color: white;
-}
-
-.show {
-    display: block;
 }
 
 /* MESSAGE */
