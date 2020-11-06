@@ -63,17 +63,13 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.registerForm.value).subscribe(this.registrationSuccess, this.registartionFailure);
   }
 
-  private registrationSuccess = (response) => {
+  private registrationSuccess = () => {
     this.router.navigate(["login"]);
   }
 
-  private registartionFailure = ({error, status}) => {
-    if(status == 422) {
-      this.setFieldErrors(error);
-      return;
-    }
-
-    this.message = "Unknown error occured";
+  private registartionFailure = (error) => {
+    this.message = error.message;
+    this.setFieldErrors(error.fieldErrors);
   }
 
   private setFieldErrors(fieldErrors: {}) {

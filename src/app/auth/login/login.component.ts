@@ -39,20 +39,14 @@ export class LoginComponent implements OnInit {
   }
 
   loginAsGuest() {
-    
+    //TODO
   }
 
-  private loginSuccess = (resp) => {
-    localStorage.setItem("auth", resp)
+  private loginSuccess = () => {
     this.router.navigate(['games']);
   }
 
-  private loginFailure = ({error, status}) => {
-    if(status == 401) {
-      this.message = error;
-      return;
-    } 
-
-    this.message = 'Unknown error occured';
+  private loginFailure = (error) => {
+    this.message = error.message;
   }
 }

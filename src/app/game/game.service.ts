@@ -26,25 +26,25 @@ export class GameService {
   }
 
   getGameData(): Observable<any> {
-    return this.http.get<State>(environment.API_URL + `games/${localStorage.getItem("activeGame")}`, {headers: this.authService.getHeaders()});
+    return this.http.get<State>(environment.API_URL + `games/${localStorage.getItem("activeGame")}`, {headers: this.authService.getAuthHeaders()});
   }
 
   mark(x: number, y: number): Observable<any>  {
-    return this.http.post(environment.API_URL + `games/${localStorage.getItem("activeGame")}/mark`, {x, y}, {headers: this.authService.getHeaders()});
+    return this.http.post(environment.API_URL + `games/${localStorage.getItem("activeGame")}/mark`, {x, y}, {headers: this.authService.getAuthHeaders()});
   }
 
   rematch(): Observable<any>  {
-    return this.http.post(environment.API_URL + `games/${localStorage.getItem("activeGame")}/rematch`, null, {headers: this.authService.getHeaders()});
+    return this.http.post(environment.API_URL + `games/${localStorage.getItem("activeGame")}/rematch`, null, {headers: this.authService.getAuthHeaders()});
   }
 
   join(gameID: string): Observable<any> {
-    return this.http.post(environment.API_URL + `games/${gameID}/join`, null, {headers: this.authService.getHeaders()}).pipe(
+    return this.http.post(environment.API_URL + `games/${gameID}/join`, null, {headers: this.authService.getAuthHeaders()}).pipe(
       tap(resp => localStorage.setItem("activeGame", gameID))
     );
   }
 
   leave(): Observable<any> {
-    return this.http.post<{success: boolean, message: string}>(environment.API_URL + `games/${localStorage.getItem("activeGame")}/leave`, null, {headers: this.authService.getHeaders()}).pipe(
+    return this.http.post<{success: boolean, message: string}>(environment.API_URL + `games/${localStorage.getItem("activeGame")}/leave`, null, {headers: this.authService.getAuthHeaders()}).pipe(
       tap(() => localStorage.removeItem("activeGame"))
     );
   }
