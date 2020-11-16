@@ -22,6 +22,7 @@ header {
 
 app-logo {
     justify-self: left;
+    font-size: min(1em, 5vw);
 }
 
 .games-filter input {
@@ -141,7 +142,7 @@ main .games .games-wrapper {
 
     display: grid;
     grid-gap: 2em;
-    grid-template-columns: repeat(auto-fill, minmax(18em, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
     justify-items: center;
     align-items: center;
 }
@@ -276,7 +277,6 @@ main .game {
     }
 
     header app-logo {
-        font-size: 1.2em;
         justify-self: center;
     }
 
@@ -312,13 +312,6 @@ main .game {
 /* MEDIA MOBILE */
 
 @media screen and (max-width: 576px) {
-
-
-    /* HEADER */
-
-    header app-logo {
-        font-size: 5vw;
-    }
 
     /* MAIN */
 
