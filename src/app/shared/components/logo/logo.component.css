@@ -21,3 +21,9 @@
     margin-right: 2em;
     vertical-align: middle;
 }
+
+@media screen and (max-width: 450px) {
+    .logo-text {
+        display: none;
+    }
+}

@@ -1,20 +1,15 @@
 .board {
-    border: 2px solid var(--dark-3);
+    display: grid;
+    grid: repeat(3, 1.25em) / repeat(3, 1.25em);
+
+    border: 0.05em solid var(--dark-3);
 }
 
-.row {
-    display: flex;
-}
-
-.row:nth-child(2n + 1) .tile:nth-child(2n + 1),
-.row:nth-child(2n) .tile:nth-child(2n) {
+.tile:nth-child(2n) {
     background-color: var(--dark-3);
 }
 
 .tile {
-    width: 1.5em;
-    height: 1.5em;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +17,6 @@
     background-color: var(--dark-2);
     color: var(--main-1);
 
-    font-size: 8em;
     font-family: 'Permanent Marker', 'Roboto';
     
     outline: none;

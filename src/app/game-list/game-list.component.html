@@ -34,8 +34,8 @@
                         </div>
                     </div>
                     <div class="controls">
-                        <button class="spectate">
-                            <img src="../../assets/imgs/binoculars.svg" alt="watch game" title="watch game">
+                        <button class="spectate" (click)="spectateGame(game.id)">
+                            <img src="../../assets/imgs/binoculars.svg" alt="spectate game" title="spectate game">
                             <span>Spectate</span>
                         </button>
                         <button class="play" (click)="joinGame(game.id)">Play</button>

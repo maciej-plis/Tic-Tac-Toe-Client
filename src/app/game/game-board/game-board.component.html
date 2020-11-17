@@ -1,7 +1,7 @@
 <div class="board">
-    <div class="row" *ngFor="let row of board; let i = index">
+    <ng-container *ngFor="let row of board; let i = index"> 
         <button class="tile" *ngFor="let tile of row; let j = index" (click)="mark(i, j)">
             <span class="symbol">{{Symbol[tile]}}</span>
         </button>
-    </div>
+    </ng-container>
 </div>

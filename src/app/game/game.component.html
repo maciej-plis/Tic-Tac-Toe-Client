@@ -7,12 +7,12 @@
         </div>
     </header>
     <main>
-        <app-status-bar [errorMessage]="errorMessage" [gameState]="gameData.state" [activePlayer]="gameData.players[gameData.activeSymbol]"></app-status-bar>
-        <app-game-board [board]="gameData.board" [errorCallback]="setError"></app-game-board>
-        <div class="rematch" *ngIf="isFinished()">
-            <button class="rematch-btn" (click)="rematch()">rematch!</button>
+        <div class="wrapper game">
+            <app-status-bar [errorMessage]="errorMessage" [gameState]="gameData.state" [activePlayer]="gameData.players[gameData.activeSymbol]"></app-status-bar>
+            <app-game-board [board]="gameData.board" [errorCallback]="setError"></app-game-board>
+            <button class="rematch-btn" (click)="rematch()" *ngIf="isFinished()">rematch!</button>
         </div>
-        <div class="side-panel">
+        <div class="wrapper side-panel">
             <app-player-card class="player-O" [player]="gameData.players.O"></app-player-card>
             <app-player-card class="player-X" [player]="gameData.players.X"></app-player-card>
             <div class="chat">
@@ -21,7 +21,7 @@
                         {{ message.content }}
                     </p>
                 </div>
-                <form>
+                <form class="message-input" (submit)="true">
                     <input type="text" placeholder="Your message..">
                     <button type="submit">send</button>
                 </form>

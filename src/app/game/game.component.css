@@ -5,21 +5,35 @@
     background-color: var(--dark-4);
 }
 
+button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+header .leave-btn:hover,
+header .leave-btn:focus,
+.rematch-btn:focus,
+.rematch-btn:hover,
+.chat .message-input button:focus, 
+.chat .message-input button:hover {
+    filter: brightness(1.2);
+}
+
 /* HEADER */
 
 header {
     padding: 1em;
 
     display: grid;
-    grid: auto / repeat(3, 1fr);
-    justify-items: center;
-    align-items: center;
-    
+    place-items: center;
+    grid-template-columns: repeat(3, 1fr);
+
     background-color: var(--main-1);
 }
 
-app-logo {
-    justify-self: left;
+header app-logo {
+    justify-self: start;
 }
 
 header .game-name {
@@ -29,76 +43,61 @@ header .game-name {
 }
 
 header .controls {
-    justify-self: right;
+    justify-self: end;
 }
 
 header .leave-btn {
-    padding: 0.5em;
+    padding: 0.6em;
 
     background-color: var(--bonus-2);
     color: var(--light-1);
 
     font-size: 1.2em;
     text-transform: capitalize;
-
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-
-header .leave-btn:hover,
-header .leave-btn:focus {
-    background-color: var(--bonus-1);
 }
 
 /* MAIN */
 
 main {
-    display: grid;
-    grid: 1fr min-content 1fr / repeat(2, auto);
-    justify-items: center;
+    display: flex;
+    justify-content: space-evenly;
     align-items: center;
 }
 
-app-status-bar,
-app-game-board,
-.rematch {
-    grid-column: 1 / 2;
-
+.wrapper {
     margin: 1em;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+app-game-board { 
+    display: grid;
+    place-items: center;
+
+    font-size: 11em;
 }
 
 .rematch-btn {
     padding: 0.5em 3.5em;
+    margin: 0 auto;
 
     background-color: var(--bonus-2);
     color: var(--light-2);
 
     font-size: 1.5em;
     text-transform: uppercase;
-
-    outline: none;
-    border: none;
-    cursor: pointer;
-}
-
-.rematch-btn:focus,
-.rematch-btn:hover {
-    background-color: var(--bonus-1);
 }
 
 .side-panel {
-    grid-row: 1 / 4;
-    grid-column: 2 / 3;
-
-    width: 80%;
-    min-width: 25em;
-    max-width: 40em;
-    height: 85%;
-    margin: 1em;
+    width: clamp(20em, 80%, 35em);
+    height: max(75vh, 700px);
     padding: 1em;
 
-    display: grid;
+    display: grid;  
     grid: min-content auto / repeat(2, 1fr);
     gap: 0.5em;
 
@@ -108,8 +107,9 @@ app-game-board,
 .chat {
     grid-column: 1 / 3;
 
-    display: grid;
-    grid: auto min-content / auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
 }
 
 .chat .messages {
@@ -123,8 +123,7 @@ app-game-board,
 }
 
 .chat .message {
-    display: block;
-    max-width: 80%;
+    max-width: 75%;
     padding: 0.5em;
     margin: 0.25em 0.25em 0 0.25em;
 
@@ -141,56 +140,62 @@ app-game-board,
     background-color: var(--dark-1);
 }
 
-.chat form {
+.chat .message-input {
     display: flex;
-
-    border-top: 0.5em solid var(--dark-3);
 }
 
-.chat form input {
+.message-input input {
     width: 85%;
     padding: 0.5em;
 
     background-color: var(--dark-2);
     color: var(--light-2);
 
-    outline: none;
     border: none;
+    outline: none;
 }
 
-.chat form input:focus {
+.message-input input:focus {
     background-color: var(--dark-1);
 }
 
-.chat form button {
+.message-input button {
     width: 15%;
 
     background-color: var(--bonus-2);
     color: var(--light-2);
-
-    border: none;
-    outline: none;
 }
 
-.chat form button:focus, 
-.chat form button:hover {
-    background-color: var(--bonus-1);
+@media screen and (max-width: 1350px) {
+    app-game-board {
+        font-size: 9em;
+    }
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1050px) {
     main {
-        grid: repeat(4, auto) / auto;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        display: flex;
+        justify-content: space-between;
     }
 
-    app-status-bar,
-    app-game-board,
-    .rematch,
-    .side-panel {
-        grid-column: auto;
-        grid-row: auto;
+    app-game-board {
+        font-size: 23vw;
+    }
+}
+
+@media screen and (max-width: 610px) {
+    #container {
+        font-size: 0.85em;
     }
 
     .side-panel {
-        height: 50em;
+        height: 500px;
+        width: 90%;
     }
 }
