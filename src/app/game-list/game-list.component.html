@@ -7,9 +7,8 @@
         <div class="menu">
             <button class="menu-trigger">&#9660;</button>
             <div class="menu-items">
-                <button class="menu-item sorting">
-                    sorting options
-                </button>
+                <button class="menu-item">WIP</button>
+                <button class="menu-item">WIP</button>
                 <div class="separator"></div>
                 <button class="menu-item logout" (click)="logout()">
                     logout
@@ -39,7 +38,7 @@
                             <span>Spectate</span>
                         </button>
                         <button class="play" (click)="joinGame(game.id)">Play</button>
-                        <button class="remove" title="Remove Game">&#10060;</button>
+                        <button class="remove" title="Remove Game" (click)="removeGame(game.id)">&#10060;</button>
                     </div>
                 </div>
             </div>

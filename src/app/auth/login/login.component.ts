@@ -23,9 +23,14 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(this.authService.isAuthenticated()) {
-      this.router.navigate(['games']);
-    }
+    this.authService.isServerOnline().subscribe((isOnline: boolean) => {
+      if(!isOnline) {
+        this.message = "Sorry, server is currently offline"
+      }
+      else if(this.authService.isAuthenticated()) {
+        this.router.navigate(['games']);
+      }
+    }); 
   }
 
   login() {
@@ -39,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginAsGuest() {
-    //TODO
+    this.message = "Sorry this feature is unavaiable yet :(";
   }
 
   private loginSuccess = () => {

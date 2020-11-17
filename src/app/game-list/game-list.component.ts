@@ -61,6 +61,14 @@ export class GameListComponent implements OnInit {
     );
   }
 
+  spectateGame(gameID: string) {
+    this.message = "Sorry this feature is unavaiable yet :(";
+  }
+
+  removeGame(gameID: string) {
+    this.message = "Sorry this feature is unavaiable yet :(";
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['login']);

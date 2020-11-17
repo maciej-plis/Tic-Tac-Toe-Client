@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { SharedModule } from '../shared/shared.module';
@@ -62,6 +62,12 @@ export class AuthenticationService {
     }
 
     return false;
+  }
+
+  isServerOnline(): Observable<boolean> {
+    return this.http.get<boolean>(environment.API_URL).pipe(
+      catchError(() => of(false))
+    );
   }
 
   getAuthenticatedUser(): User {

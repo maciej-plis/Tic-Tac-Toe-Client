@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { GameService } from './game.service';
 import * as GameDataActions from './store/game-data.actions';
-import { GameState, State } from './store/game-data.reducer';
+import { GameState, State, Symbol } from './store/game-data.reducer';
 
 @Component({
   selector: 'app-game',
@@ -11,16 +11,13 @@ import { GameState, State } from './store/game-data.reducer';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
+  symbols = Symbol;
 
   errorMessage: string;
   gameData: State;
   
   messages = [
-    {sender: "alfa1", content: "alfa alfa"},
-    {sender: "alfa1", content: "beta alfa"},
-    {sender: "RICO5k", content: "gamma delta gamma delta gamma delta gamma delta gamma delta gamma delta"},
-    {sender: "alfa1", content: "hello hello"},
-    {sender: "RICO5k", content: "world?"}
+    {sender: "superuser", content: "Chat logic is not implemented yet"}
   ]
 
   constructor(

@@ -9,10 +9,18 @@ import { Player, Symbol } from '../store/game-data.reducer';
 export class PlayerCardComponent implements OnInit {
 
   @Input() player: Player;
+  @Input() symbol: Symbol;
 
   constructor() { }
 
   ngOnInit(): void {
+    if(!this.player) {
+      this.player = {
+        name: "Empty Slot",
+        symbol: null,
+        isReady: false
+      };
+    }
   }
 
 }
