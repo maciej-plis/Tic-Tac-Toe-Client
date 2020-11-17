@@ -7,26 +7,38 @@
     background-color: var(--dark-3);
 }
 
+.menu .menu-item.logout:hover,
+.menu .menu-item.logout:focus,
+.game .controls .play:hover, 
+.game .controls .play:focus,
+.game .controls .spectate:hover, 
+.game .controls .spectate:focus {
+    filter: brightness(1.2);
+} 
+
 /* HEADER */
 
 header {
     padding: 1em;
 
-    display: grid;
-    grid: auto / min-content auto min-content;
-    justify-items: center;
+    display: flex;
     align-items: center;
+    gap: 1em;
     
     background-color: var(--main-1);
 }
 
 app-logo {
-    justify-self: left;
     font-size: min(1em, 5vw);
 }
 
-.games-filter input {
+.games-filter {
     width: 20em;
+    margin: 0 auto;
+}
+
+.games-filter input {
+    width: 100%;
     padding: 0.6em;
 
     background-color: var(--light-2);
@@ -46,7 +58,6 @@ app-logo {
     position: relative;
 
     display: inline-block;
-    justify-self: right;
 }
 
 .menu button {
@@ -233,22 +244,14 @@ main .game {
     background-color: var(--main-1);
 }
 
-.game .controls .play:hover, 
-.game .controls .play:focus,
 .game .controls .remove:hover,
 .game .controls .remove:focus {
-    background-color: var(--main-2);
+    background-color: var(--main-1);
 } 
 
 .game .controls .spectate {
     background-color: var(--bonus-2);
 }
-
-.game .controls .spectate:hover, 
-.game .controls .spectate:focus {
-    background-color: var(--bonus-1);
-} 
-
 
 .spectate img {
     height: 1.1em;
@@ -272,20 +275,14 @@ main .game {
 
     /* HEADER */
 
-    header {
-        grid: auto / auto min-content;
-    }
-
-    header app-logo {
-        justify-self: center;
-    }
-
     .menu {
         font-size: 1.15em;
     }
 
     .games-filter {
-        display: none;
+        /* display: none; */
+        width: auto;
+        flex-grow: 0.5;
     }
 
     /* MAIN */
