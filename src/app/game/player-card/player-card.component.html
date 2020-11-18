@@ -1,6 +1,7 @@
 <div class="player-card">
     <div class="name">
-        {{ player.name }}
+        <span *ngIf="player; else elseBlock">{{ player.name }}</span>
+        <ng-template #elseBlock>Empty Slot</ng-template>
     </div>
     <div class="wrapper">
         <div class="symbol">

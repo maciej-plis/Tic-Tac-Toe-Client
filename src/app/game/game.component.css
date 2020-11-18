@@ -78,7 +78,7 @@ app-game-board {
     display: grid;
     place-items: center;
 
-    font-size: 11em;
+    font-size: 10em;
 }
 
 .rematch-btn {

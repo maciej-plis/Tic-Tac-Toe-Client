@@ -14,13 +14,7 @@ export class PlayerCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    if(!this.player) {
-      this.player = {
-        name: "Empty Slot",
-        symbol: null,
-        isReady: false
-      };
-    }
+  
   }
 
 }
