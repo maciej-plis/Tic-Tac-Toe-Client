@@ -45,6 +45,13 @@ export class AuthenticationService {
       map(() => true));
   }
 
+  loginAsGuest():Observable<boolean> {
+    return this.http.get(environment.API_URL + "login-guest").pipe(
+      catchError(errorResp => this.mapResponseError(errorResp)),
+      tap((resp: User) => this.setAuthenticatedUser(resp)),
+      map(() => true));
+  }
+
   logout(): boolean {
     if(this.isAuthenticated()) {
       localStorage.removeItem("user");

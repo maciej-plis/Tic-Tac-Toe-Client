@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginAsGuest() {
-    this.message = "Sorry this feature is unavaiable yet :(";
+    this.authService.loginAsGuest().subscribe(this.loginSuccess, this.loginFailure);
   }
 
   private loginSuccess = () => {
