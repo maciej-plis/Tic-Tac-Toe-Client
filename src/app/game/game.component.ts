@@ -30,6 +30,7 @@ export class GameComponent implements OnInit {
     this.store.select(state => state.gameData).subscribe(state => {
       this.errorMessage = null;
       this.gameData = state;
+      console.log(state.players);
     });
     this.store.dispatch(GameDataActions.loadGameData());
   }

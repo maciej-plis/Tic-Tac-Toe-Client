@@ -1,6 +1,9 @@
 <div class="player-card">
     <div class="name">
-        <span *ngIf="player; else elseBlock">{{ player.name }}</span>
+        <span *ngIf="player; else elseBlock">
+            <span class="rematch-symbol" *ngIf="player.readyForRematch">R</span>
+            {{ player.name }}
+        </span>
         <ng-template #elseBlock>Empty Slot</ng-template>
     </div>
     <div class="wrapper">

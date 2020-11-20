@@ -1,6 +1,6 @@
 <div id="container">
     <header>
-        <app-logo></app-logo>
+        <app-logo (click)="leave()"></app-logo>
         <div class="game-name">{{ gameData.name }}</div>
         <div class="controls">
             <button class="leave-btn" (click)="leave()">Leave</button>

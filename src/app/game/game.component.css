@@ -34,6 +34,8 @@ header {
 
 header app-logo {
     justify-self: start;
+
+    cursor: pointer;
 }
 
 header .game-name {

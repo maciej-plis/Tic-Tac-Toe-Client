@@ -15,3 +15,5 @@ export const activeSymbolChanged = createAction('ACTIVE_SYMBOL_CHANGED',
   props<{payload: {activeSymbol: Symbol}}>());
 export const boardChanged = createAction('BOARD_CHANGED',
   props<{payload: {board: Symbol[][]}}>());
+  export const playerRequestedRematch = createAction('PLAYER_REQUESTED_REMATCH',
+  props<{payload: {player: Player}}>());
