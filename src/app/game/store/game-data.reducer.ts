@@ -23,6 +23,7 @@ export enum Symbol {
 export interface Player {
   symbol: Symbol,
   name: string,
+  score: number,
   readyForRematch: boolean
 }
 
@@ -52,7 +53,7 @@ export const initialState: State = {
 const gameDataReducer = createReducer(
   initialState,
   on(GameDataActions.setGameData, (state, {gameData}) => ({...state, ...gameData})),
-  on(GameDataActions.playerJoined, GameDataActions.playerRequestedRematch, (state, {payload}) => {
+  on(GameDataActions.playerJoined, GameDataActions.playerRequestedRematch, GameDataActions.playerWon, (state, {payload}) => {
     let players = Object.assign({}, state.players);
     players[payload.player.symbol] = payload.player;
     return {...state, players};
