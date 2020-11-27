@@ -8,7 +8,6 @@
             <button class="menu-trigger">&#9660;</button>
             <div class="menu-items">
                 <button class="menu-item">WIP</button>
-                <button class="menu-item">WIP</button>
                 <div class="separator"></div>
                 <button class="menu-item logout" (click)="logout()">
                     logout
@@ -33,12 +32,7 @@
                         </div>
                     </div>
                     <div class="controls">
-                        <button class="spectate" (click)="spectateGame(game.id)">
-                            <img src="../../assets/imgs/binoculars.svg" alt="spectate game" title="spectate game">
-                            <span>Spectate</span>
-                        </button>
                         <button class="play" (click)="joinGame(game.id)">Play</button>
-                        <button class="remove" title="Remove Game" (click)="removeGame(game.id)">&#10060;</button>
                     </div>
                 </div>
             </div>

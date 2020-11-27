@@ -10,9 +10,7 @@
 .menu .menu-item.logout:hover,
 .menu .menu-item.logout:focus,
 .game .controls .play:hover, 
-.game .controls .play:focus,
-.game .controls .spectate:hover, 
-.game .controls .spectate:focus {
+.game .controls .play:focus {
     filter: brightness(1.2);
 } 
 
@@ -244,31 +242,6 @@ main .game {
     background-color: var(--main-1);
 }
 
-.game .controls .remove:hover,
-.game .controls .remove:focus {
-    background-color: var(--main-1);
-} 
-
-.game .controls .spectate {
-    background-color: var(--bonus-2);
-}
-
-.spectate img {
-    height: 1.1em;
-}
-
-.spectate span {
-    display: none;
-}
-
-.game .controls .remove {
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    background-color: inherit;
-}
-
 /* MEDIA TABLET */
 
 @media screen and (max-width: 768px) {
@@ -291,36 +264,4 @@ main .game {
         grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
     }
 
-    .game .controls .play,
-    .game .controls .spectate {
-        width: 45%; 
-    }
-
-    .spectate img {
-        display: none;
-    }
-
-    .spectate span {
-        display: block;
-    }
-
-}
-
-/* MEDIA MOBILE */
-
-@media screen and (max-width: 576px) {
-
-    /* MAIN */
-
-    .game .controls {
-        display: grid;
-        grid-template-columns: 100% ;
-        justify-items: center;
-        gap: 1em;
-    }
-
-    .game .controls .play,
-    .game .controls .spectate {
-        width: 90%; 
-    }
 }

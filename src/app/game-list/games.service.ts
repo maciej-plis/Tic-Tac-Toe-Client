@@ -26,12 +26,4 @@ export class GamesService {
   getGames(): Observable<GameInfo[]> {
     return this.http.get<GameInfo[]>(environment.API_URL + "games", {headers: this.authService.getAuthHeaders()});
   }
-
-  createGame(name: string): Observable<any> {
-    return this.http.post(environment.API_URL + "games", {name}, {headers: this.authService.getAuthHeaders()});
-  }
-
-  removeGame(gameID: string): Observable<any> {
-    return this.http.delete(environment.API_URL + `games/${gameID}`, {headers: this.authService.getAuthHeaders()});
-  }
 }
