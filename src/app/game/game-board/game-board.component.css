@@ -1,6 +1,6 @@
 .board {
     display: grid;
-    grid: repeat(3, 1.25em) / repeat(3, 1.25em);
+    grid: repeat(3, min(1.25em, 250px)) / repeat(3, min(1.25em, 250px));
 
     border: 0.05em solid var(--dark-3);
 }
