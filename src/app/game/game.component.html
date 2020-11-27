@@ -17,11 +17,11 @@
             <app-player-card class="player-X" [symbol]="symbols.X" [player]="gameData.players.X"></app-player-card>
             <div class="chat">
                 <div class="messages">
-                    <p class="message"  *ngFor="let message of messages" [ngClass]="message.sender == 'RICO5k' ? 'outgoing': ''">
-                        {{ message.content }}
+                    <p class="message"  *ngFor="let message of gameData.messages" [ngClass]="message.sender == user.name ? 'outgoing': ''">
+                        {{ message.message }}
                     </p>
                 </div>
-                <form class="message-input" (submit)="true">
+                <form class="message-input" (submit)="sendMessage($event)">
                     <input type="text" placeholder="Your message..">
                     <button type="submit">send</button>
                 </form>

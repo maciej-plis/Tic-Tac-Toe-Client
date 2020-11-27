@@ -100,7 +100,7 @@ app-game-board {
     padding: 1em;
 
     display: grid;  
-    grid: min-content auto / repeat(2, 1fr);
+    grid: min-content minmax(0, auto) / repeat(2, 1fr);
     gap: 0.5em;
 
     background-color: var(--dark-3);
@@ -121,7 +121,7 @@ app-game-board {
     display: flex;
     flex-direction: column;
 
-    overflow-wrap: normal;
+    overflow-y: scroll;
 }
 
 .chat .message {
@@ -133,6 +133,8 @@ app-game-board {
 
     background-color: var(--dark-3);
     color: var(--light-2);
+
+    overflow-wrap: break-word;
 
     border-radius: 5px;
 }

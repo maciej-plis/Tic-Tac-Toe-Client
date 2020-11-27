@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { AuthenticationService, User } from '../auth/authentication.service';
 import { GameService } from './game.service';
 import * as GameDataActions from './store/game-data.actions';
 import { GameState, State, Symbol } from './store/game-data.reducer';
@@ -15,22 +16,20 @@ export class GameComponent implements OnInit {
 
   errorMessage: string;
   gameData: State;
-  
-  messages = [
-    {sender: "superuser", content: "Chat logic is not implemented yet"}
-  ]
+  user: User = this.authService.getAuthenticatedUser();
 
   constructor(
     private gameService: GameService,
+    private authService: AuthenticationService,
     private router: Router,
     private store: Store<{gameData: State}>,
   ) { }
+
 
   ngOnInit(): void {
     this.store.select(state => state.gameData).subscribe(state => {
       this.errorMessage = null;
       this.gameData = state;
-      console.log(state.players);
     });
     this.store.dispatch(GameDataActions.loadGameData());
   }
@@ -45,6 +44,18 @@ export class GameComponent implements OnInit {
 
   rematch() {
     this.gameService.rematch().subscribe(null, error => this.setError(error.error));
+  }
+
+  sendMessage(event) {
+    event.preventDefault();
+
+    const messageInput = event.target.querySelector('input');
+    const message = messageInput.value;
+
+    if(message) {
+      this.gameService.sendMessage(message).subscribe();
+      messageInput.value = "";
+    }
   }
 
   isFinished(): boolean {

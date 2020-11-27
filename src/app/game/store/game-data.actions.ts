@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { GameState, Player, State, Symbol } from './game-data.reducer';
+import { GameState, Message, Player, State, Symbol } from './game-data.reducer';
 
 export const loadGameData = createAction('LOAD_GAME_DATA');
 export const subscribeGameChanges = createAction('SUBSCRIBE_GAME_CHANGES');
@@ -19,3 +19,7 @@ export const playerRequestedRematch = createAction('PLAYER_REQUESTED_REMATCH',
   props<{payload: {player: Player}}>());
 export const playerWon = createAction('PLAYER_WON',
   props<{payload: {player: Player}}>());
+export const newMessage = createAction('NEW_MESSAGE',
+  props<{payload: {message: Message}}>());
+export const clearChat = createAction('CLEAR_CHAT',
+  props<{payload: {}}>());

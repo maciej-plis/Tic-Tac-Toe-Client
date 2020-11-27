@@ -17,7 +17,7 @@ interface RegistrationDetails {
   verifyPassword: string
 }
 
-interface User {
+export interface User {
   name: string,
   token: string,
   expire: number

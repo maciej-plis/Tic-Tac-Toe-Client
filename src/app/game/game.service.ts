@@ -48,4 +48,8 @@ export class GameService {
       tap(() => localStorage.removeItem("activeGame"))
     );
   }
+
+  sendMessage(message: string): Observable<any> {
+    return this.http.post(environment.API_URL + `games/${localStorage.getItem("activeGame")}/send-message`, message, {headers: this.authService.getAuthHeaders()});
+  }
 }

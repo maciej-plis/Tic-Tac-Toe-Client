@@ -27,6 +27,12 @@ export interface Player {
   readyForRematch: boolean
 }
 
+export interface Message {
+  sender: string,
+  message: string,
+  timestamp: number
+}
+
 export interface State {
   name: string;
   board: Symbol[][];
@@ -38,6 +44,7 @@ export interface State {
 
   state: GameState;
   activeSymbol: Symbol;
+  messages: Array<Message>;
 }
 
 export const initialState: State = {
@@ -47,7 +54,8 @@ export const initialState: State = {
           [Symbol.EMPTY,Symbol.EMPTY,Symbol.EMPTY]],
   players: {},
   state: GameState.NOT_ENOUGH_PLAYERS,
-  activeSymbol: Symbol.X
+  activeSymbol: Symbol.X,
+  messages: []
 }
 
 const gameDataReducer = createReducer(
@@ -66,6 +74,11 @@ const gameDataReducer = createReducer(
   on(GameDataActions.gameStateChanged, (s, {payload}) => ({...s, state: payload.state})),
   on(GameDataActions.activeSymbolChanged, (state, {payload}) => ({...state, activeSymbol: payload.activeSymbol})),
   on(GameDataActions.boardChanged, (state, {payload}) => ({...state, board: payload.board})),
+  on(GameDataActions.newMessage, (state, {payload}) => {
+    const messages = [...state.messages, payload.message];
+    return {...state, messages};
+  }),
+  on(GameDataActions.clearChat, (state) => ({...state, messages: []}) )
 );
 
 export function reducer(state: State | undefined, action: Action) {
