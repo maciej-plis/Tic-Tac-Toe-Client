@@ -76,10 +76,11 @@ app-logo {
     text-align: center;
 }
 
-.menu:focus-within .menu-items {
+.menu.active .menu-items {
     display: block;
 }
 
+.menu.active .menu-trigger,
 .menu:focus-within .menu-trigger,
 .menu .menu-trigger:hover,
 .menu .menu-item:focus,

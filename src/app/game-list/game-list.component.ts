@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../auth/authentication.service';
 import { GameInfo, GamesService } from './games.service';
@@ -10,7 +10,9 @@ import { GameService } from '../game/game.service';
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.css']
 })
-export class GameListComponent implements OnInit {
+export class GameListComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('menu') menu: ElementRef;
 
   private allGames: GameInfo[] = [];
   sortingMethods = Object.keys(SortingMethods);
@@ -39,6 +41,30 @@ export class GameListComponent implements OnInit {
       this.allGames = resp;
       this.filteredGames = resp;
     });
+
+    setInterval(() => {
+      this.gamesService.getGames().subscribe(resp => {
+        this.allGames = resp;
+        this.filteredGames = resp;
+      });
+
+    }, 3000);
+  }
+
+  ngAfterViewInit() {
+    const menu = this.menu.nativeElement;
+
+    document.addEventListener("focusin", () => {
+      if(!menu.contains(document.activeElement)) {
+        menu.classList.remove("active");
+      }
+    })
+
+    document.addEventListener('keydown', (e) => {
+      if(e.key == "Escape" && menu.contains(document.activeElement)) {
+        menu.classList.remove("active");
+      }
+    })
   }
 
   filterGames(keyword: string) {
@@ -48,6 +74,10 @@ export class GameListComponent implements OnInit {
 
   applySorting(method: string) {
     this.activeMethod = method;
+  }
+
+  toggleMenu() {
+    document.querySelector(".menu").classList.toggle("active");
   }
 
   joinGame(gameID: string) {

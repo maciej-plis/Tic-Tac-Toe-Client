@@ -4,8 +4,8 @@
         <div class="games-filter">
             <input type="text" placeholder="Searched game..." #keyword (keyup)="filterGames(keyword.value)">
         </div>
-        <div class="menu">
-            <button class="menu-trigger">&#9660;</button>
+        <div class="menu" #menu>
+            <button class="menu-trigger" (click)="toggleMenu() ">&#9660;</button>
             <div class="menu-items">
                 <button class="menu-item">WIP</button>
                 <div class="separator"></div>
