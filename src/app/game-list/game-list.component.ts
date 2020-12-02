@@ -29,10 +29,6 @@ export class GameListComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    if(!this.authService.isAuthenticated()) {
-      this.router.navigate(['login']);
-    }
-
     if(localStorage.getItem("activeGame") !== null) {
       this.gameService.leave().subscribe();
     }
