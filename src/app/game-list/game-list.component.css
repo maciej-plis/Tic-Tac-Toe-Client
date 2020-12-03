@@ -50,76 +50,17 @@ app-logo {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-/* MENU */
-
-.menu {
-    position: relative;
-
+.logout {
     display: inline-block;
-}
+    width: 2.1em;
+    height: 2.1em;
 
-.menu button {
-    background-color: inherit;
-
-    border: none;
-    outline: none;
     cursor: pointer;
 }
 
-.menu .menu-trigger {
-    width: 3em;
-    height: 3em;
-
-    background-color: var(--main-1);
-    color: var(--light-1);
-
-    text-align: center;
-}
-
-.menu.active .menu-items {
-    display: block;
-}
-
-.menu.active .menu-trigger,
-.menu:focus-within .menu-trigger,
-.menu .menu-trigger:hover,
-.menu .menu-item:focus,
-.menu .menu-item:hover {
-    background-color: var(--bonus-1);
-    color: var(--light-1);
-}
-
-.menu .menu-items {
-    position: absolute;
-    right: 0;
-
-    display: none;
-
-    background-color: var(--dark-1);
-
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.menu .separator {
-    height: 0;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
-}
-
-.menu .menu-item {
-    width: 100%;
-    min-width: 15em;
-    max-width: 20em;
-    padding: 1em 2em;
-
-    color: var(--light-3);
-
-    text-align: center;
-    text-transform: capitalize;
-}
-
-.menu .menu-item.logout {
-    background-color: var(--main-1);
+img {
+    width: auto;
+    height: 100%;
 }
 
 /* MESSAGE */
@@ -249,12 +190,7 @@ main .game {
 
     /* HEADER */
 
-    .menu {
-        font-size: 1.15em;
-    }
-
     .games-filter {
-        /* display: none; */
         width: auto;
         flex-grow: 0.5;
     }

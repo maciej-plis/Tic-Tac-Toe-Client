@@ -4,15 +4,8 @@
         <div class="games-filter">
             <input type="text" placeholder="Searched game..." #keyword (keyup)="filterGames(keyword.value)">
         </div>
-        <div class="menu" #menu>
-            <button class="menu-trigger" (click)="toggleMenu() ">&#9660;</button>
-            <div class="menu-items">
-                <button class="menu-item">WIP</button>
-                <div class="separator"></div>
-                <button class="menu-item logout" (click)="logout()">
-                    logout
-                </button>
-            </div>
+        <div class="logout">
+            <img src="assets/imgs/logout.png" alt="logout icon" title="logout" (click)="logout()">
         </div>
     </header>
     <main>

@@ -10,9 +10,7 @@ import { GameService } from '../game/game.service';
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.css']
 })
-export class GameListComponent implements OnInit, AfterViewInit {
-
-  @ViewChild('menu') menu: ElementRef;
+export class GameListComponent implements OnInit {
 
   private allGames: GameInfo[] = [];
   sortingMethods = Object.keys(SortingMethods);
@@ -47,22 +45,6 @@ export class GameListComponent implements OnInit, AfterViewInit {
     }, 3000);
   }
 
-  ngAfterViewInit() {
-    const menu = this.menu.nativeElement;
-
-    document.addEventListener("focusin", () => {
-      if(!menu.contains(document.activeElement)) {
-        menu.classList.remove("active");
-      }
-    })
-
-    document.addEventListener('keydown', (e) => {
-      if(e.key == "Escape" && menu.contains(document.activeElement)) {
-        menu.classList.remove("active");
-      }
-    })
-  }
-
   filterGames(keyword: string) {
     this.filteredGames = Object.assign([], this.allGames).filter(
       game => game.name.toLowerCase().indexOf(keyword.toLowerCase()) > -1);
@@ -70,10 +52,6 @@ export class GameListComponent implements OnInit, AfterViewInit {
 
   applySorting(method: string) {
     this.activeMethod = method;
-  }
-
-  toggleMenu() {
-    document.querySelector(".menu").classList.toggle("active");
   }
 
   joinGame(gameID: string) {
@@ -85,14 +63,6 @@ export class GameListComponent implements OnInit, AfterViewInit {
         this.message = error.error;
       }
     );
-  }
-
-  spectateGame(gameID: string) {
-    this.message = "Sorry this feature is unavaiable yet :(";
-  }
-
-  removeGame(gameID: string) {
-    this.message = "Sorry this feature is unavaiable yet :(";
   }
 
   logout() {

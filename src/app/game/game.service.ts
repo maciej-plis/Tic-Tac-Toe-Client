@@ -5,20 +5,19 @@ import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AuthenticationService } from '../auth/authentication.service';
 import { State } from './store/game-data.reducer';
-import { WSClient } from './WS_client';
+import { WsClientService } from './ws-client.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
   
-  wsClient: WSClient;
-
   constructor(
     private http: HttpClient,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private wsClient: WsClientService
   ) {
-    this.wsClient = new WSClient(environment.API_URL + "tic-tac-toe/");
+    wsClient.setUrl(environment.API_URL + "tic-tac-toe/");
   }
 
   subscribeGameEvents(): Observable<any> {
@@ -44,6 +43,8 @@ export class GameService {
   }
 
   leave(): Observable<any> {
+    this.wsClient.disconnect();
+
     return this.http.post<{success: boolean, message: string}>(environment.API_URL + `games/${localStorage.getItem("activeGame")}/leave`, null, {headers: this.authService.getAuthHeaders()}).pipe(
       tap(() => localStorage.removeItem("activeGame"))
     );
