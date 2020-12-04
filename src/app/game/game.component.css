@@ -128,7 +128,7 @@ app-game-board {
 .chat .message {
     max-width: 75%;
     padding: 0.5em;
-    margin: 0.25em 0.25em 0 0.25em;
+    margin: 0.25em;
 
     align-self: flex-end;
 
@@ -138,6 +138,10 @@ app-game-board {
     overflow-wrap: break-word;
 
     border-radius: 5px;
+}
+
+.message + .message {
+    margin-top: 0;
 }
 
 .chat .message.outgoing {

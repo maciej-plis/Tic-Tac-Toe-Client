@@ -10,9 +10,10 @@ import { PlayerCardComponent } from './player-card/player-card.component';
 import { StatusBarComponent } from './status-bar/status-bar.component';
 import { GameDataEffects } from './store/game-data.effects';
 import * as GameDataReducer from './store/game-data.reducer';
+import { ScrollDownDirective } from './scroll-down.directive';
 
 @NgModule({
-  declarations: [GameComponent, GameBoardComponent, PlayerCardComponent, StatusBarComponent],
+  declarations: [GameComponent, GameBoardComponent, PlayerCardComponent, StatusBarComponent, ScrollDownDirective],
   imports: [
     CommonModule,
     SharedModule,

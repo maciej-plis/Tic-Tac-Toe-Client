@@ -16,7 +16,7 @@
             <app-player-card class="player-O" [symbol]="symbols.O" [player]="gameData.players.O"></app-player-card>
             <app-player-card class="player-X" [symbol]="symbols.X" [player]="gameData.players.X"></app-player-card>
             <div class="chat">
-                <div class="messages">
+                <div class="messages" appScrollDown>
                     <p class="message"  *ngFor="let message of gameData.messages" [ngClass]="message.sender == user.name ? 'outgoing': ''">
                         {{ message.message }}
                     </p>
